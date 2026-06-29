@@ -6533,7 +6533,7 @@ section, .gap {
     .solar-calc-container {
         flex-direction: column !important;
         overflow-y: auto !important;
-        padding-bottom: 80px !important; /* Spacing for fixed mobile CTA */
+        padding-bottom: 20px !important;
     }
     
     .solar-calc-panel {
@@ -6552,15 +6552,13 @@ section, .gap {
     }
     
     .calc-cta-wrapper {
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        background: #ffffff !important;
-        padding: 15px 20px !important;
-        border-top: 1px solid rgba(0, 154, 78, 0.08) !important;
-        box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.08) !important;
-        z-index: 100 !important;
+        position: relative !important;
+        background: transparent !important;
+        padding: 20px 20px 30px 20px !important;
+        border-top: none !important;
+        box-shadow: none !important;
+        z-index: 10 !important;
+        width: 100% !important;
     }
     
     .solar-calc-drawer-close {
