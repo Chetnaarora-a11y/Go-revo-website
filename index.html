@@ -69,7 +69,6 @@
         <ul class="navbar-links-premium d-none d-lg-flex align-items-center justify-content-center m-0">
           <li><a href="index.html" class="nav-link-premium active" data-i18n="nav_home">Home</a></li>
           <li><a href="our-project.html" class="nav-link-premium" data-i18n="nav_projects">Projects</a></li>
-          <li><a href="#solar-calculator" class="nav-link-premium" data-i18n="nav_calculator">Solar Calculator</a></li>
           <li><a href="about.html" class="nav-link-premium" data-i18n="nav_about">About</a></li>
           <li><a href="our-blog.html" class="nav-link-premium" data-i18n="nav_blog">Blog</a></li>
           <li><a href="contact.html" class="nav-link-premium" data-i18n="nav_contact">Contact</a></li>
@@ -77,6 +76,7 @@
 
         <!-- CTA & Mobile Trigger -->
         <div class="navbar-actions d-flex align-items-center gap-3">
+          <a href="#solar-calculator" class="btn-quote-premium d-none d-sm-inline-flex" data-i18n="nav_calculator">Solar Calculator</a>
           <a href="#solar-quote" class="btn-quote-premium d-none d-sm-inline-flex" data-i18n="btn_get_quote">Get Free Quote</a>
           <button class="navbar-mobile-trigger d-lg-none" aria-label="Toggle Menu">
             <span class="hamburger-bar"></span>
@@ -116,7 +116,7 @@
   <div class="container">
     <div class="row align-items-center justify-content-between hero-row">
       <!-- Left Column -->
-      <div class="col-xl-6 col-lg-7 col-md-12 hero-text-col">
+      <div class="col-xl-6 col-lg-6 col-md-12 hero-text-col">
         <div class="hero-text-content">
           <div class="trust-badge-wrapper animate__animated animate__fadeInDown">
             <span class="trust-badge"><i class="fa-solid fa-star text-warning"></i> 4.9/5 Rating</span>
@@ -129,7 +129,7 @@
           </p>
           <div class="hero-buttons animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
             <a href="#solar-quote" class="btn btn-primary-premium">Calculate Your Savings <i class="fa-solid fa-arrow-right"></i></a>
-            <a href="#how-it-works" class="btn btn-secondary-premium">Learn More</a>
+            <a href="about.html" class="btn btn-secondary-premium">Learn More</a>
           </div>
           <div class="hero-trust-logos animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
             <span class="trust-by">Trusted by:</span>
@@ -138,37 +138,11 @@
           </div>
         </div>
       </div>
-      <!-- Right Column -->
-      <div class="col-xl-5 col-lg-5 col-md-12 hero-image-col position-relative">
-        <div class="hero-image-wrapper animate__animated animate__zoomIn">
-          <div class="hero-image-glow"></div>
-          <img src="assets/img/hero-img.png" alt="Go Revo Solar Rooftop" class="hero-main-img img-fluid">
-          
-          <!-- Floating Glass Card 1 -->
-          <div class="floating-glass-card card-savings animate-float-1">
-            <div class="card-icon"><i class="fa-solid fa-wallet"></i></div>
-            <div class="card-info">
-              <span class="card-label">Monthly Savings</span>
-              <span class="card-value">Up to 90%</span>
-            </div>
-          </div>
-
-          <!-- Floating Glass Card 2 -->
-          <div class="floating-glass-card card-subsidy animate-float-2">
-            <div class="card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-            <div class="card-info">
-              <span class="card-label">Govt Subsidy</span>
-              <span class="card-value">₹78,000 Max</span>
-            </div>
-          </div>
-
-          <!-- Floating Glass Card 3 -->
-          <div class="floating-glass-card card-install animate-float-3">
-            <div class="card-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-            <div class="card-info">
-              <span class="card-label">Installation</span>
-              <span class="card-value">Zero Hassle</span>
-            </div>
+      <!-- Right Column: Embedded Calculator -->
+      <div class="col-xl-6 col-lg-6 col-md-12 hero-calculator-col">
+        <div class="hero-calculator-wrapper animate__animated animate__fadeInRight">
+          <div class="hero-calculator-container">
+            <!-- Calculator markup will be injected here on load -->
           </div>
         </div>
       </div>

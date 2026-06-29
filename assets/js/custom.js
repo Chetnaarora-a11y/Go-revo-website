@@ -544,7 +544,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-// ==========================================
+/// ==========================================
 // 2025 INTERACTIVE SOLAR SAVINGS CALCULATOR
 // ==========================================
     // 1. Configurable Constants for calculations
@@ -556,60 +556,57 @@ jQuery(document).ready(function($) {
         CO2_FACTOR_25YR: 30.0         // Tons of CO2 offset by 1kW solar over 25 years (1.2 Tons/yr * 25)
     };
 
-    // 2. HTML Markup to inject dynamically on page load
-    const calcModalMarkup = `
-    <div class="solar-calc-modal-overlay" id="solarCalcModal">
-      <div class="solar-calc-modal-wrapper">
-        <button class="solar-calc-close-btn" id="closeSolarCalc" aria-label="Close Calculator">&times;</button>
+    // 2. HTML Markup for shared calculator container
+    const calcContainerMarkup = `
         <div class="solar-calc-container">
           <!-- Left Panel: Input -->
           <div class="solar-calc-panel left-panel">
             <h3 class="panel-title">Solar Savings Calculator</h3>
             <p class="panel-desc">Check your estimated system size, lifetime savings, and government subsidy instantly.</p>
             
-            <form id="solarCalcForm" novalidate>
+            <form class="solar-calc-form" novalidate>
               <div class="calc-input-group">
-                <label for="calcName">Full Name</label>
-                <input type="text" id="calcName" placeholder="Enter your full name" required>
+                <label>Full Name</label>
+                <input type="text" class="calc-name" placeholder="Enter your full name" required>
                 <div class="calc-invalid-feedback">Please enter your name</div>
               </div>
               
               <div class="calc-input-group">
-                <label for="calcPhone">Phone Number</label>
-                <input type="tel" id="calcPhone" placeholder="10-digit mobile number" maxlength="10" required>
+                <label>Phone Number</label>
+                <input type="tel" class="calc-phone" placeholder="10-digit mobile number" maxlength="10" required>
                 <div class="calc-invalid-feedback">Please enter a valid 10-digit mobile number</div>
               </div>
               
               <div class="calc-input-group">
-                <label for="calcPincode">PIN Code</label>
-                <input type="text" id="calcPincode" placeholder="6-digit PIN code" maxlength="6" required>
+                <label>PIN Code</label>
+                <input type="text" class="calc-pincode" placeholder="6-digit PIN code" maxlength="6" required>
                 <div class="calc-invalid-feedback">Please enter a valid 6-digit PIN code</div>
               </div>
               
               <div class="calc-input-group">
                 <div class="bill-label-row">
-                  <label for="calcBillInput">Monthly Electricity Bill</label>
+                  <label>Monthly Electricity Bill</label>
                   <div class="bill-input-wrapper">
                     <span class="currency-prefix">₹</span>
-                    <input type="number" id="calcBillInput" min="1000" max="25000" value="6000" required>
+                    <input type="number" class="calc-bill-input" min="1000" max="25000" value="6000" required>
                   </div>
                 </div>
                 
                 <div class="slider-container">
-                  <input type="range" id="calcBillSlider" min="1000" max="25000" step="500" value="6000" class="calc-range-slider">
+                  <input type="range" class="calc-bill-slider" min="1000" max="25000" step="500" value="6000">
                   <div class="slider-bounds">
                     <span>₹1,000</span>
                     <span>₹25,000</span>
                   </div>
                 </div>
-                <div class="calc-invalid-feedback" id="billError">Electricity bill must be between ₹1,000 and ₹25,000</div>
+                <div class="calc-invalid-feedback bill-error-feedback">Electricity bill must be between ₹1,000 and ₹25,000</div>
               </div>
             </form>
           </div>
           
           <!-- Right Panel: Results -->
           <div class="solar-calc-panel right-panel">
-            <div class="calc-loading-overlay" id="calcLoading">
+            <div class="calc-loading-overlay calc-loading">
               <div class="calc-spinner"></div>
               <p style="font-weight: 600; color: var(--common-colour);">Calculating savings...</p>
             </div>
@@ -619,16 +616,16 @@ jQuery(document).ready(function($) {
             <!-- Monthly Savings Main Box -->
             <div class="savings-main-card">
               <span class="savings-card-label">Estimated Monthly Savings</span>
-              <div class="savings-main-val" id="resMonthlySavings">₹0</div>
+              <div class="savings-main-val res-monthly-savings">₹0</div>
               <div class="bill-comparison-bar">
                 <div class="comparison-item">
                   <span class="comp-label">Current Bill</span>
-                  <span class="comp-val old-bill-val" id="resOldBill">₹6,000</span>
+                  <span class="comp-val res-old-bill">₹6,000</span>
                 </div>
                 <div class="comparison-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 <div class="comparison-item">
                   <span class="comp-label">Bill After Solar</span>
-                  <span class="comp-val new-bill-val" id="resNewBill">₹600</span>
+                  <span class="comp-val res-new-bill">₹600</span>
                 </div>
               </div>
             </div>
@@ -636,7 +633,7 @@ jQuery(document).ready(function($) {
             <!-- 5-Year Savings Banner -->
             <div class="five-year-savings-banner">
               <span>Projected 5-Year Savings:</span>
-              <strong id="resFiveYearSavings">₹0</strong>
+              <strong class="res-five-year-savings">₹0</strong>
             </div>
             
             <!-- Result Cards Grid -->
@@ -645,7 +642,7 @@ jQuery(document).ready(function($) {
                 <div class="res-card-icon"><i class="fa-solid fa-solar-panel"></i></div>
                 <div class="res-card-data">
                   <span class="res-label">System Size</span>
-                  <span class="res-val" id="resSystemSize">0 kW</span>
+                  <span class="res-val res-system-size">0 kW</span>
                 </div>
               </div>
               
@@ -653,7 +650,7 @@ jQuery(document).ready(function($) {
                 <div class="res-card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
                 <div class="res-card-data">
                   <span class="res-label">Govt Subsidy</span>
-                  <span class="res-val text-success" id="resSubsidy">₹0</span>
+                  <span class="res-val text-success res-subsidy">₹0</span>
                 </div>
               </div>
               
@@ -661,7 +658,7 @@ jQuery(document).ready(function($) {
                 <div class="res-card-icon"><i class="fa-solid fa-credit-card"></i></div>
                 <div class="res-card-data">
                   <span class="res-label">Estimated EMI</span>
-                  <span class="res-val" id="resEMI">₹0/mo</span>
+                  <span class="res-val res-emi">₹0/mo</span>
                 </div>
               </div>
               
@@ -669,7 +666,7 @@ jQuery(document).ready(function($) {
                 <div class="res-card-icon"><i class="fa-solid fa-calendar-check"></i></div>
                 <div class="res-card-data">
                   <span class="res-label">Payback Period</span>
-                  <span class="res-val" id="resPayback">0 Years</span>
+                  <span class="res-val res-payback">0 Years</span>
                 </div>
               </div>
               
@@ -677,7 +674,7 @@ jQuery(document).ready(function($) {
                 <div class="res-card-icon"><i class="fa-solid fa-chart-line"></i></div>
                 <div class="res-card-data">
                   <span class="res-label">Annual Savings</span>
-                  <span class="res-val" id="resAnnualSavings">₹0</span>
+                  <span class="res-val res-annual-savings">₹0</span>
                 </div>
               </div>
               
@@ -685,73 +682,44 @@ jQuery(document).ready(function($) {
                 <div class="res-card-icon"><i class="fa-solid fa-leaf"></i></div>
                 <div class="res-card-data">
                   <span class="res-label">CO₂ Offset (25 yr)</span>
-                  <span class="res-val" id="resCO2">0 Tons</span>
+                  <span class="res-val res-co2">0 Tons</span>
                 </div>
               </div>
             </div>
             
             <!-- Bottom fixed/sticky CTA wrapper -->
             <div class="calc-cta-wrapper">
-              <button type="button" class="btn btn-primary-premium w-100" id="btnCheckExactSavings">
+              <button type="button" class="btn btn-primary-premium w-100 btn-check-exact-savings">
                 CHECK MY EXACT SAVINGS <i class="fa-solid fa-arrow-right"></i>
               </button>
             </div>
           </div>
         </div>
+    `;
+
+    // 3. Sliding Drawer Wrapper Dynamic Injection
+    const calcDrawerMarkup = `
+    <div class="solar-calc-drawer-overlay" id="solarCalcDrawerOverlay">
+      <div class="solar-calc-drawer" id="solarCalcDrawer">
+        <button class="solar-calc-drawer-close" id="closeSolarCalcDrawer" aria-label="Close Calculator">&times;</button>
+        <div class="drawer-content">
+          ${calcContainerMarkup}
+        </div>
       </div>
     </div>`;
 
-    // Inject calculator modal markup to body
-    $('body').append(calcModalMarkup);
+    $('body').append(calcDrawerMarkup);
 
-    // 3. UI Variables & Cache
-    const $modal = $('#solarCalcModal');
-    const $slider = $('#calcBillSlider');
-    const $numInput = $('#calcBillInput');
-    const $loading = $('#calcLoading');
-    
-    // Calculated values object to hold state
-    let lastCalculatedData = {
-        bill: 6000,
-        systemSize: 3,
-        subsidy: 78000,
-        emi: 0,
-        monthlySavings: 0,
-        newBill: 0
-    };
-
-    // 4. Synchronization Logic
-    $slider.on('input', function() {
-        $numInput.val($(this).val());
-        triggerCalculation();
-    });
-
-    $numInput.on('input', function() {
-        let val = parseInt($(this).val());
-        if (isNaN(val)) return;
-        
-        // Let user type, but validate limits on change
-        if (val >= 1000 && val <= 25000) {
-            $slider.val(val);
-            $('#billError').parent().removeClass('has-error');
-            triggerCalculation();
-        }
-    });
-
-    $numInput.on('blur', function() {
-        let val = parseInt($(this).val());
-        if (isNaN(val) || val < 1000) {
-            $(this).val(1000);
-            $slider.val(1000);
-        } else if (val > 25000) {
-            $(this).val(25000);
-            $slider.val(25000);
-        }
-        triggerCalculation();
-    });
+    // 4. Inject calculator inside hero section on landing page
+    const $heroContainer = $('.hero-calculator-container');
+    if ($heroContainer.length) {
+        $heroContainer.html(calcContainerMarkup);
+        triggerCalculation($heroContainer);
+    }
 
     // 5. Calculation Function
-    function performCalculations() {
+    function performCalculations($container) {
+        const $numInput = $container.find('.calc-bill-input');
         const bill = parseInt($numInput.val()) || 6000;
         
         // System Capacity: Consumption (bill / Tariff) / Month production per kW (120 units)
@@ -807,45 +775,49 @@ jQuery(document).ready(function($) {
         const fiveYearSavings = annualSavings * 5;
         const co2Offset = Math.round(systemSize * SOLAR_CALC_CONFIG.CO2_FACTOR_25YR);
         
-        // Cache data for submission
-        lastCalculatedData = {
+        // Cache data inside container's DOM data-attribute
+        $container.data('last-calculated-data', {
             bill: bill,
             systemSize: systemSize,
             subsidy: subsidy,
             emi: emi,
             monthlySavings: monthlySavings,
             newBill: newBill
-        };
+        });
 
-        // 6. Update results with count-up animations
-        animateCountUp('#resMonthlySavings', monthlySavings, true);
-        animateCountUp('#resOldBill', bill, true);
-        animateCountUp('#resNewBill', newBill, true);
-        animateCountUp('#resFiveYearSavings', fiveYearSavings, true);
+        // Update results with count-up animations locally within $container
+        animateCountUp($container.find('.res-monthly-savings'), monthlySavings, true);
+        animateCountUp($container.find('.res-old-bill'), bill, true);
+        animateCountUp($container.find('.res-new-bill'), newBill, true);
+        animateCountUp($container.find('.res-five-year-savings'), fiveYearSavings, true);
         
         // Static values (no count-up needed or simple update)
-        $('#resSystemSize').text(systemSize + ' kW');
-        $('#resSubsidy').text('₹' + subsidy.toLocaleString('en-IN'));
-        $('#resEMI').text('₹' + emi.toLocaleString('en-IN') + '/mo');
-        $('#resPayback').text(payback.toFixed(1) + ' Years');
-        $('#resAnnualSavings').text('₹' + annualSavings.toLocaleString('en-IN'));
-        $('#resCO2').text(co2Offset + ' Tons');
+        $container.find('.res-system-size').text(systemSize + ' kW');
+        $container.find('.res-subsidy').text('₹' + subsidy.toLocaleString('en-IN'));
+        $container.find('.res-emi').text('₹' + emi.toLocaleString('en-IN') + '/mo');
+        $container.find('.res-payback').text(payback.toFixed(1) + ' Years');
+        $container.find('.res-annual-savings').text('₹' + annualSavings.toLocaleString('en-IN'));
+        $container.find('.res-co2').text(co2Offset + ' Tons');
     }
 
     // Dynamic debounce logic to prevent animation flickering
-    let calcTimeout;
-    function triggerCalculation() {
+    function triggerCalculation($container) {
+        const $loading = $container.find('.calc-loading');
         $loading.addClass('active');
+        
+        let calcTimeout = $container.data('calc-timeout');
         clearTimeout(calcTimeout);
+        
         calcTimeout = setTimeout(function() {
-            performCalculations();
+            performCalculations($container);
             $loading.removeClass('active');
         }, 300);
+        
+        $container.data('calc-timeout', calcTimeout);
     }
 
-    // 7. Count-Up Animation Helper
-    function animateCountUp(elementId, targetValue, isCurrency) {
-        const $el = $(elementId);
+    // 6. Count-Up Animation Helper
+    function animateCountUp($el, targetValue, isCurrency) {
         let start = 0;
         const duration = 500; // ms
         const startTime = performance.now();
@@ -871,42 +843,79 @@ jQuery(document).ready(function($) {
         requestAnimationFrame(update);
     }
 
-    // 8. Opening and Closing Modal
-    function openCalculator() {
-        $modal.addClass('active');
+    // 7. Synchronization Logic (delegated event listeners)
+    $(document).on('input', '.calc-bill-slider', function() {
+        const $container = $(this).closest('.solar-calc-container');
+        $container.find('.calc-bill-input').val($(this).val());
+        triggerCalculation($container);
+    });
+
+    $(document).on('input', '.calc-bill-input', function() {
+        const $container = $(this).closest('.solar-calc-container');
+        const $slider = $container.find('.calc-bill-slider');
+        let val = parseInt($(this).val());
+        if (isNaN(val)) return;
+        
+        if (val >= 1000 && val <= 25000) {
+            $slider.val(val);
+            $container.find('.bill-error-feedback').parent().removeClass('has-error');
+            triggerCalculation($container);
+        }
+    });
+
+    $(document).on('blur', '.calc-bill-input', function() {
+        const $container = $(this).closest('.solar-calc-container');
+        const $slider = $container.find('.calc-bill-slider');
+        let val = parseInt($(this).val());
+        if (isNaN(val) || val < 1000) {
+            $(this).val(1000);
+            $slider.val(1000);
+        } else if (val > 25000) {
+            $(this).val(25000);
+            $slider.val(25000);
+        }
+        triggerCalculation($container);
+    });
+
+    // 8. Opening and Closing Drawer
+    const $drawerOverlay = $('#solarCalcDrawerOverlay');
+    const $drawer = $('#solarCalcDrawer');
+
+    function openCalculatorDrawer() {
+        $drawerOverlay.addClass('active');
         $('body').addClass('overflow-hidden');
-        triggerCalculation(); // Perform initial calculations
+        triggerCalculation($drawer.find('.solar-calc-container'));
     }
 
-    function closeCalculator() {
-        $modal.removeClass('active');
+    function closeCalculatorDrawer() {
+        $drawerOverlay.removeClass('active');
         $('body').removeClass('overflow-hidden');
     }
 
     // Intercept clicks on links pointing to #solar-calculator
     $(document).on('click', 'a[href*="#solar-calculator"]', function(e) {
         e.preventDefault();
-        openCalculator();
+        openCalculatorDrawer();
     });
 
-    $('#closeSolarCalc, .solar-calc-modal-overlay').on('click', function(e) {
-        if (e.target === this || $(this).attr('id') === 'closeSolarCalc') {
-            closeCalculator();
+    $(document).on('click', '#closeSolarCalcDrawer, #solarCalcDrawerOverlay', function(e) {
+        if (e.target === this || $(this).attr('id') === 'closeSolarCalcDrawer') {
+            closeCalculatorDrawer();
         }
     });
 
-    $('.solar-calc-modal-wrapper').on('click', function(e) {
-        e.stopPropagation(); // prevent closing overlay when clicking inside modal
+    $(document).on('click', '#solarCalcDrawer', function(e) {
+        e.stopPropagation(); // prevent closing overlay when clicking inside drawer
     });
 
     // 9. Input fields validation on type
-    $('#calcName').on('input', function() {
+    $(document).on('input', '.calc-name', function() {
         if ($(this).val().trim() !== '') {
             $(this).parent().removeClass('has-error');
         }
     });
 
-    $('#calcPhone').on('input', function() {
+    $(document).on('input', '.calc-phone', function() {
         let val = $(this).val().replace(/\D/g, ''); // numeric only
         $(this).val(val);
         if (val.length === 10 && /^[6-9]/.test(val)) {
@@ -914,7 +923,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $('#calcPincode').on('input', function() {
+    $(document).on('input', '.calc-pincode', function() {
         let val = $(this).val().replace(/\D/g, ''); // numeric only
         $(this).val(val);
         if (val.length === 6) {
@@ -923,60 +932,73 @@ jQuery(document).ready(function($) {
     });
 
     // 10. Submission CTA click logic
-    $('#btnCheckExactSavings').on('click', function(e) {
+    $(document).on('click', '.btn-check-exact-savings', function(e) {
         e.preventDefault();
         
+        const $container = $(this).closest('.solar-calc-container');
         let isValid = true;
         
         // Validate name
-        const nameVal = $('#calcName').val().trim();
+        const $name = $container.find('.calc-name');
+        const nameVal = $name.val().trim();
         if (nameVal === '') {
-            $('#calcName').parent().addClass('has-error');
+            $name.parent().addClass('has-error');
             isValid = false;
         } else {
-            $('#calcName').parent().removeClass('has-error');
+            $name.parent().removeClass('has-error');
         }
         
         // Validate Phone (Exactly 10 digits, starts with 6-9 in India)
-        const phoneVal = $('#calcPhone').val().trim();
+        const $phone = $container.find('.calc-phone');
+        const phoneVal = $phone.val().trim();
         if (!/^[6-9]\d{9}$/.test(phoneVal)) {
-            $('#calcPhone').parent().addClass('has-error');
+            $phone.parent().addClass('has-error');
             isValid = false;
         } else {
-            $('#calcPhone').parent().removeClass('has-error');
+            $phone.parent().removeClass('has-error');
         }
         
         // Validate Pincode (Exactly 6 digits)
-        const pinVal = $('#calcPincode').val().trim();
+        const $pin = $container.find('.calc-pincode');
+        const pinVal = $pin.val().trim();
         if (!/^\d{6}$/.test(pinVal)) {
-            $('#calcPincode').parent().addClass('has-error');
+            $pin.parent().addClass('has-error');
             isValid = false;
         } else {
-            $('#calcPincode').parent().removeClass('has-error');
+            $pin.parent().removeClass('has-error');
         }
 
         if (!isValid) return;
 
-        // Form is valid! Close modal and carry values to the main quote form.
-        closeCalculator();
+        // Form is valid! Close drawer and carry values to the main quote form.
+        closeCalculatorDrawer();
 
         const isOnIndex = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.split('/').pop() === '';
         
+        const calcData = $container.data('last-calculated-data') || {
+            bill: 6000,
+            systemSize: 3,
+            subsidy: 78000,
+            emi: 0,
+            monthlySavings: 0,
+            newBill: 0
+        };
+
         if (isOnIndex) {
             // Directly copy values to index.html lead quote form
-            populateAndScrollToLeadForm(nameVal, phoneVal, pinVal);
+            populateAndScrollToLeadForm(nameVal, phoneVal, pinVal, calcData);
         } else {
             // Store details in sessionStorage and redirect to index.html#solar-quote
             const redirectData = {
                 name: nameVal,
                 phone: phoneVal,
                 pincode: pinVal,
-                calc_bill: lastCalculatedData.bill,
-                calc_savings: lastCalculatedData.monthlySavings,
-                calc_system_size: lastCalculatedData.systemSize,
-                calc_subsidy: lastCalculatedData.subsidy,
-                calc_emi: lastCalculatedData.emi,
-                calc_new_bill: lastCalculatedData.newBill
+                calc_bill: calcData.bill,
+                calc_savings: calcData.monthlySavings,
+                calc_system_size: calcData.systemSize,
+                calc_subsidy: calcData.subsidy,
+                calc_emi: calcData.emi,
+                calc_new_bill: calcData.newBill
             };
             sessionStorage.setItem('solar_calc_data', JSON.stringify(redirectData));
             window.location.href = 'index.html#solar-quote';
@@ -984,7 +1006,7 @@ jQuery(document).ready(function($) {
     });
 
     // Helper: populate the homepage form and scroll smoothly
-    function populateAndScrollToLeadForm(name, phone, pincode) {
+    function populateAndScrollToLeadForm(name, phone, pincode, calcData) {
         const $leadForm = $('#leadForm');
         if ($leadForm.length) {
             // Populate standard inputs
@@ -993,7 +1015,7 @@ jQuery(document).ready(function($) {
             $leadForm.find('input[name="pincode"]').val(pincode);
             
             // Select the closest bill amount value in quote form dropdown
-            const bill = lastCalculatedData.bill;
+            const bill = calcData.bill;
             const $select = $leadForm.find('select[name="bill"]');
             if ($select.length) {
                 if (bill < 1500) $select.val('Below ₹1,500');
@@ -1004,12 +1026,12 @@ jQuery(document).ready(function($) {
             }
             
             // Populate hidden inputs
-            $('#calc_bill').val(lastCalculatedData.bill);
-            $('#calc_savings').val(lastCalculatedData.monthlySavings);
-            $('#calc_system_size').val(lastCalculatedData.systemSize);
-            $('#calc_subsidy').val(lastCalculatedData.subsidy);
-            $('#calc_emi').val(lastCalculatedData.emi);
-            $('#calc_new_bill').val(lastCalculatedData.newBill);
+            $('#calc_bill').val(calcData.bill);
+            $('#calc_savings').val(calcData.monthlySavings);
+            $('#calc_system_size').val(calcData.systemSize);
+            $('#calc_subsidy').val(calcData.subsidy);
+            $('#calc_emi').val(calcData.emi);
+            $('#calc_new_bill').val(calcData.newBill);
 
             // Highlight the quote form briefly with a premium shadow glow
             const $needExpertSection = $('.need-expert');
@@ -1036,15 +1058,14 @@ jQuery(document).ready(function($) {
         
         // Wait for page resources to load and populate form
         setTimeout(function() {
-            lastCalculatedData = {
+            populateAndScrollToLeadForm(cached.name, cached.phone, cached.pincode, {
                 bill: cached.calc_bill,
                 monthlySavings: cached.calc_savings,
                 systemSize: cached.calc_system_size,
                 subsidy: cached.calc_subsidy,
                 emi: cached.calc_emi,
                 newBill: cached.calc_new_bill
-            };
-            populateAndScrollToLeadForm(cached.name, cached.phone, cached.pincode);
+            });
         }, 600);
     }
 
