@@ -3,189 +3,120 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boltx - Our Blog</title>
+  <title>Go Revo - Our Blog</title>
   <link rel="icon" href="assets/img/favicon.png">
   <!-- CSS only -->
-   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-   <!-- fancybox -->
-   <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
-   <link rel="stylesheet" href="assets/css/slick.css">
-   <link rel="stylesheet" href="assets/css/slick-theme.css">
-   <link rel="stylesheet" href="assets/css/swiper.css">
-   <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-   <link rel="stylesheet" href="assets/font/flaticon_mycollection.css">
-   <!-- style -->
-   <link rel="stylesheet" href="assets/css/style.css">
-   <!-- responsive -->
-   <link rel="stylesheet" href="assets/css/responsive.css"> 
-   <script src="assets/js/jquery-3.6.0.min.js"></script>
-   <script src="assets/js/preloader.js"></script>
- </head>
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+  <!-- fancybox -->
+  <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="assets/css/slick.css">
+  <link rel="stylesheet" href="assets/css/slick-theme.css">
+  <link rel="stylesheet" href="assets/css/swiper.css">
+  <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+  <link rel="stylesheet" href="assets/font/flaticon_mycollection.css">
+  <!-- style -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- responsive -->
+  <link rel="stylesheet" href="assets/css/responsive.css"> 
+  <script src="assets/js/jquery-3.6.0.min.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18249357920"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18249357920');
+  </script>
+</head>
 <body>
-<div class="preloader">
-  <div id="loader"></div>
+
 </div> 
-<header>
-  <div class="top-bar">
-    <div class="container">
-      <div class="top-bar-slid">
-        <div>
-          <div class="phone-data">
-            <div class="phone">
-              <i class="flaticon-iphone"></i>
-              <span>Call Agent:</span><a href="callto:+18880002222">+1 888 000 2222</a>
-            </div>
-            <div class="phone d-flax align-items-center">
-              <i>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0.833313 12.7083C0.488135 12.7083 0.208313 12.9882 0.208313 13.3333C0.208313 13.6785 0.488135 13.9583 0.833313 13.9583H3.33331C3.67849 13.9583 3.95831 13.6785 3.95831 13.3333C3.95831 12.9882 3.67849 12.7083 3.33331 12.7083H0.833313Z" fill="black"/>
-                  <path d="M0.833313 15.2083C0.488135 15.2083 0.208313 15.4882 0.208313 15.8333C0.208313 16.1785 0.488135 16.4583 0.833313 16.4583H5.83331C6.17849 16.4583 6.45831 16.1785 6.45831 15.8333C6.45831 15.4882 6.17849 15.2083 5.83331 15.2083H0.833313Z" fill="black"/>
-                  <path d="M2.59071 4.24172L2.5 4.16667C2.757 3.81294 3.0305 3.55276 3.38422 3.29576C4.4795 2.5 6.04189 2.5 9.16667 2.5H10.8333C13.9581 2.5 15.5205 2.5 16.6157 3.29576C16.9695 3.55276 17.2214 3.78443 17.4784 4.13816L17.3737 4.24225L15.4505 6.16551C14.0491 7.56689 13.0416 8.5725 12.1726 9.23558C11.318 9.88758 10.6712 10.1491 9.99992 10.1491C9.3285 10.1491 8.68175 9.88758 7.82717 9.23558C6.95817 8.5725 5.95066 7.56689 4.54927 6.16551L2.92989 4.54612L2.59071 4.24172Z" fill="black"/>
-                  <path d="M1.66663 9.99999C1.66663 7.80006 1.66663 6.37454 1.94431 5.34122L2.06983 5.45388L3.69916 7.08319C5.05938 8.44341 6.12537 9.50941 7.06891 10.2293C8.03468 10.9662 8.94529 11.3991 9.99988 11.3991C11.0544 11.3991 11.965 10.9662 12.9308 10.2293C13.8743 9.50941 14.9403 8.44341 16.3005 7.08321L18.0528 5.3309C18.3333 6.36504 18.3333 7.79274 18.3333 9.99999C18.3333 13.1247 18.3333 14.6872 17.5375 15.7824C17.2805 16.1362 16.9695 16.4472 16.6157 16.7042C15.5205 17.5 13.958 17.5 10.8333 17.5H9.16663C7.97633 17.5 7.01273 17.5 6.2153 17.456C6.95166 17.2833 7.49996 16.6223 7.49996 15.8333C7.49996 14.9128 6.75377 14.1667 5.83329 14.1667H4.77699C4.9188 13.9215 4.99996 13.6369 4.99996 13.3333C4.99996 12.4128 4.25377 11.6667 3.33329 11.6667H1.67263C1.66663 11.1657 1.66663 10.6129 1.66663 9.99999Z" fill="black"/>
-                  </svg>
-              </i>
-              <span>Send Email: </span>
-              <a class="me-3" href="mailto:info@example.com">info@example.com</a>
-            </div>
+<header class="main-header">
+  <!-- Unified Floating Navbar -->
+  <div class="navbar-wrapper">
+    <div class="container-fluid px-lg-4">
+      
+      <!-- Utility Row inside the Floating Glass Navbar -->
+      <div class="navbar-utility d-none d-lg-flex justify-content-between align-items-center pb-2 mb-2">
+        <div class="navbar-utility-left d-flex align-items-center gap-4">
+          <a href="tel:+918679111428" class="utility-link">
+            <i class="fa-solid fa-phone"></i> Call: +91 86791 11428
+          </a>
+          <a href="https://wa.me/918679111428" class="utility-link" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="mailto:support@gorevo.in" class="utility-link">
+            <i class="fa-solid fa-envelope"></i> support@gorevo.in
+          </a>
+        </div>
+        <div class="navbar-utility-right d-flex align-items-center gap-3">
+          <div class="language-toggle-wrapper-new">
+            <a href="#" class="lang-option-new active">EN</a>
+            <span class="lang-divider-new">|</span>
+            <a href="#" class="lang-option-new">HI</a>
           </div>
         </div>
-        <div class="social-media-text">
-            <a href="#"><i class="fa-brands fa-facebook"></i>Facebook</a>
-            <a href="#"><i class="fa-brands fa-twitter"></i>Twitter</a>
-            <a href="#"><i class="fa-brands fa-linkedin"></i>Linked in</a>
-        </div>
       </div>
-    </div>
-  </div>
-  <div class="bottom-bar">
-    <div class="container">
-        <div class="bottom-bar-text">
-          <a href="index.html"><img src="assets/img/logo.png" alt="logo"></a>
-            <nav class="navbar">
-                <ul class="navbar-links">
-                    <li class="navbar-dropdown menu-item-children">
-                        <a href="#">Home</a>
-                        <ul class="sub-menu">
-                            <li><a href="index.html">home 1</a></li>
-                            <li><a href="index-2.html">home 2</a></li>
-                            <li><a href="index-3.html">home 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="navbar-dropdown">
-                        <a href="about.html">About</a>
-                    </li>
-                    <li class="navbar-dropdown menu-item-children">
-                        <a href="#">Pages</a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item-children"><a href="#">project</a>
-                                <ul class="sub-menu">
-                                  <li><a href="our-project.html">our project</a></li>
-                                  <li><a href="our-project-2.html">our project 2</a></li>
-                                  <li><a href="project-details.html">project details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="our-history.html">our history</a></li>
-                            <li><a href="pricing-plans.html">pricing plans</a></li>
-                            <li><a href="faq.html">faq</a></li>
-                            <li><a href="404.html">404</a></li>
-                        </ul>
-                    </li>
-                    <li class="navbar-dropdown menu-item-children">
-                        <a href="#">Services</a>
-                        <ul class="sub-menu">
-                            <li><a href="our-services.html">our services</a></li>
-                            <li><a href="service-details.html">service details</a></li>
-                        </ul>
-                    </li>
-                    <li class="navbar-dropdown menu-item-children">
-                        <a href="#">News</a>
-                        <ul class="sub-menu">
-                            <li><a href="our-blog.html">our blog</a></li>
-                            <li><a href="blog-details.html">blog details</a></li>
-                        </ul>
-                    </li>
-                    <li class="navbar-dropdown">
-                        <a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="menu-end">
-                <div class="bar-menu">
-                  <i class="fa-solid fa-bars"></i>
-                </div>
-                <a href="javascript:void(0)" id="desktop-menu" class="menu-start">
-                  <svg id="ham-menue" viewBox="0 0 100 100"> <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path> <path class="line line2" d="M 20,50 H 80"></path> <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path> </svg>
-                </a>
-                <div class="header-search-button search-box-outer">
-                <a href="javascript:void(0)" class="search-btn">
-                  <i class="flaticon-magnifying-glass"></i>
-                </a>
-                </div>
-                
-                <a href="#" class="btn">Request a Quote</a>
-            </div>
-      </div>
-    </div>
-  </div>
-    <div class="mobile-nav hmburger-menu" id="mobile-nav" style="display:block;">
-        <div class="res-log">
-            <a href="index.html">
-                <img src="assets/img/logo.png" alt="Responsive Logo" class="white-logo">
-            </a>
+
+      <nav class="navbar-premium d-flex align-items-center justify-content-between">
+        <!-- Logo -->
+        <div class="navbar-logo">
+          <a href="index.html">
+            <img src="assets/img/logo.png" alt="Go Revo Logo">
+          </a>
         </div>
-        <ul>
-            <li class="menu-item-has-children"><a href="JavaScript:void(0)">Home</a>
-                <ul class="sub-menu">
-                    <li><a href="index.html">home 1</a></li>
-                    <li><a href="index-2.html">home 2</a></li>
-                    <li><a href="index-3.html">home 3</a></li>
-                </ul>
-            </li>
-            <li><a href="about.html">about</a></li>
-            <li class="menu-item-has-children"><a href="JavaScript:void(0)">pages</a>
-                <ul class="sub-menu">
-                    <li><a href="our-project.html">our project</a></li>
-                    <li><a href="our-project-2.html">our project 2</a></li>
-                    <li><a href="project-details.html">project details</a></li>
-                    <li><a href="our-history.html">our history</a></li>
-                    <li><a href="pricing-plans.html">pricing plans</a></li>
-                    <li><a href="faq.html">faq</a></li>
-                    <li><a href="404.html">404</a></li>
-                </ul>
-            </li>
-            <li class="menu-item-has-children"><a href="JavaScript:void(0)">service</a>
-                <ul class="sub-menu">
-                    <li><a href="our-services.html">our services</a></li>
-                    <li><a href="service-details.html">service details</a></li>
-                </ul>
-            </li>
-            <li class="menu-item-has-children"><a href="JavaScript:void(0)">News</a>
-                <ul class="sub-menu">
-                    <li><a href="our-blog.html">our blog</a></li>
-                    <li><a href="blog-details.html">blog details</a></li>
-                </ul>
-            </li>
-            <li><a href="Contact.html">Contact</a></li>
+
+        <!-- Navigation Links -->
+        <ul class="navbar-links-premium d-none d-lg-flex align-items-center justify-content-center m-0">
+          <li><a href="index.html" class="nav-link-premium">Home</a></li>
+          <li><a href="index.html#residential-solar" class="nav-link-premium">Residential Solar</a></li>
+          <li><a href="index.html#commercial-solar" class="nav-link-premium">Commercial Solar</a></li>
+          <li><a href="our-project.html" class="nav-link-premium">Projects</a></li>
+          <li><a href="index.html#solar-calculator" class="nav-link-premium">Solar Calculator</a></li>
+          <li><a href="about.html" class="nav-link-premium">About</a></li>
+          <li><a href="our-blog.html" class="nav-link-premium active">Blog</a></li>
+          <li><a href="contact.html" class="nav-link-premium">Contact</a></li>
         </ul>
-        <a href="JavaScript:void(0)" id="res-cross"></a>
-    </div>
-    <div class="mobile-nav desktop-menu">
-          <h2>Installation and Maintenance of Solar Panels</h2>
-          <p class="des">Practical renewable energy technology thatreduces costs and helps the environment</p>
-          <figure>
-            <img src="https://placehold.co/320x163" alt="img">
-          </figure>
-          <h3>Get in touch</h3>
-          <p class="num"><a href="callto:+18880002222">+18880002222</a></p>
-          <p class="adrs">374 William S Canning Blvd, Fall River MA 2721, USA</p>
-          <div class="social-medias">
-              <a href="javascript:void(0)">Facebook</a>
-              <a href="javascript:void(0)">Twitter</a>
-              <a href="javascript:void(0)">Linkedin</a>
-            </div>
+
+        <!-- CTA & Mobile Trigger -->
+        <div class="navbar-actions d-flex align-items-center gap-3">
+          <a href="index.html#solar-quote" class="btn-quote-premium d-none d-sm-inline-flex">Get Free Quote</a>
+          <button class="navbar-mobile-trigger d-lg-none" aria-label="Toggle Menu">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
         </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div class="mobile-menu-overlay d-lg-none" id="mobile-nav">
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-header d-flex justify-content-between align-items-center">
+        <img src="assets/img/logo.png" alt="Go Revo Logo" class="mobile-logo">
+        <button class="mobile-menu-close" id="res-cross" aria-label="Close Menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <ul class="mobile-menu-links">
+        <li><a href="index.html" class="mobile-link">Home</a></li>
+        <li><a href="index.html#residential-solar" class="mobile-link">Residential Solar</a></li>
+        <li><a href="index.html#commercial-solar" class="mobile-link">Commercial Solar</a></li>
+        <li><a href="our-project.html" class="mobile-link">Projects</a></li>
+        <li><a href="index.html#solar-calculator" class="mobile-link">Solar Calculator</a></li>
+        <li><a href="about.html" class="mobile-link">About</a></li>
+        <li><a href="our-blog.html" class="mobile-link active">Blog</a></li>
+        <li><a href="contact.html" class="mobile-link">Contact</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <a href="index.html#solar-quote" class="btn-quote-premium w-100 text-center justify-content-center mobile-link">Get Free Quote</a>
+      </div>
+    </div>
+  </div>
 </header>
-<section style="background-image: url(https://placehold.co/1920x679);" class="bannr">
+<section class="bannr" style="background-image: linear-gradient(135deg, rgba(17, 24, 37, 0.9) 0%, rgba(0, 154, 78, 0.4) 100%), url('https://placehold.co/1920x679');">
   <div class="container">
     <div class="bannr-text">
       <h2>Our Blog</h2>
@@ -422,15 +353,19 @@
         <div class="col-lg-6">
           <div class="logo">
             <img src="assets/img/logo.png" alt="logo">
-            <p>Solar energy is radiant light and heat from the Sun that is harnessed using a range of technologies such as solar power to generate electricity, solar thermal energy, and solar architecture.</p>
+            <p>Powering Indian homes with premium rooftop solar solutions that help reduce electricity bills, maximize government subsidies, and build a cleaner, more sustainable future.
+
+<br>Owned & Managed by
+
+PRIMETOWER INFRASTRUCTURE PRIVATE LIMITED</p>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="subscribe">
-            <h3>Subscribe Newsletter</h3>
-            <p>Stay up to update with our latest news and products.</p>
+            <h3>Subscribe to our Newsletter</h3>
+            <p>Stay updated with our latest solar insights, subsidy announcements, and green energy news.</p>
             <form role="form" class="get-subscribee" id="subscribe-form" method="post"> 
-              <input type="email" name="Email_Address" placeholder="Enter your email here" required="">
+              <input type="email" name="Email_Address" placeholder="Enter your email address" required="">
               <button type="submit" class="btn bk">Subscribe</button>
             </form>
           </div>
@@ -452,7 +387,7 @@
             </i></div>
             <div>
               <span>Phone No:</span> 
-              <h6><a href="callto:+1(251)3441354">+1 0109 -1812-347</a></h6>
+              <h6><a href="callto:+91 86791 11428">+91 86791 11428</a></h6>
             </div>
           </div>
           <div class="get-in-touch">
@@ -468,7 +403,7 @@
             </i></div>
             <div>
               <span>Email Address:</span> 
-              <h6><a href="mailto:username@domain.com">username@domain.com</a></h6>
+              <h6><a href="mailto:username@domain.com">support@gorevo.in</a></h6>
             </div>
           </div>
           <div class="get-in-touch">
@@ -481,7 +416,24 @@
               </svg>
             </i></div>
             <div>
-              <span class="pt-2 pb-0">12/7 new town, 245x Town 1214 Street, United State</span>
+              <span class="pt-2 pb-0">Operating Office
+
+C-25, Amigo Co-working Space, Sector 8, Noida, Gautam Buddha Nagar, Uttar Pradesh – 201301</span>
+            </div>
+          </div>
+           <div class="get-in-touch">
+            <div><i>
+              <svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_94_1710)">
+                <path d="M12.3379 7.11523C10.6713 7.11523 9.31538 8.47115 9.31538 10.1377C9.31538 11.8043 10.6713 13.1602 12.3379 13.1602C14.0045 13.1602 15.3604 11.8043 15.3604 10.1377C15.3604 8.47115 14.0045 7.11523 12.3379 7.11523Z" fill="black"/>
+                <path d="M19.4104 3.44324C17.5213 1.55407 15.0095 0.513672 12.3379 0.513672C9.66623 0.513672 7.15444 1.55407 5.26532 3.44324C3.37611 5.33245 2.33571 7.8442 2.33571 10.5158C2.33571 15.9205 7.44603 20.4158 10.1915 22.8309C10.573 23.1665 10.9024 23.4563 11.1648 23.7014C11.4937 24.0087 11.9157 24.1623 12.3378 24.1623C12.7599 24.1623 13.182 24.0087 13.5108 23.7015C13.7733 23.4563 14.1028 23.1665 14.4842 22.8309C17.2297 20.4159 22.34 15.9205 22.34 10.5159C22.34 7.8442 21.2996 5.33245 19.4104 3.44324ZM12.3379 14.5457C9.90739 14.5457 7.93009 12.5684 7.93009 10.1379C7.93009 7.70739 9.90739 5.73009 12.3379 5.73009C14.7684 5.73009 16.7457 7.70739 16.7457 10.1379C16.7457 12.5684 14.7683 14.5457 12.3379 14.5457Z" fill="black"/>
+                </g>
+              </svg>
+            </i></div>
+            <div>
+              <span class="pt-2 pb-0">Registered Office
+
+Sri Nand Lal Niwas, Civil Lines, Moradabad City, Moradabad, Uttar Pradesh – 244001</span>
             </div>
           </div>
         </div>
@@ -532,7 +484,8 @@
     </div>
     <div class="footer-bottom">
         <div class="footer-bottom-text">
-          <h6><b>Ⓒ  Copyright Boltx 2023</b>. All Right Reserved.</h6>
+          <h6><b>© 2026 GO REVO.
+</b>. All Right Reserved.</h6>
           <ul>
             <li>
               <a href="#">Privacy Policy</a>
