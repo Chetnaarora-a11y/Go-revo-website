@@ -423,7 +423,7 @@
     </div>
   </div>
 </section>
-<section class="gap sustainable-section">
+<section class="gap sustainable-section" id="solar-quote">
   <div class="container">
     <div class="need-expert" style="background-image: url(assets/img/need-expert.jpg);">
       <div>
@@ -436,7 +436,13 @@
             </div>
         </div>
       </div>
-      <form action="#" method="POST">
+      <form action="#" method="POST" id="leadForm">
+        <input type="hidden" id="calc_bill" name="calc_bill" value="">
+        <input type="hidden" id="calc_savings" name="calc_savings" value="">
+        <input type="hidden" id="calc_system_size" name="calc_system_size" value="">
+        <input type="hidden" id="calc_subsidy" name="calc_subsidy" value="">
+        <input type="hidden" id="calc_emi" name="calc_emi" value="">
+        <input type="hidden" id="calc_new_bill" name="calc_new_bill" value="">
 
     <div class="inputbox">
         <input type="text" name="name" placeholder="Full Name" required>
