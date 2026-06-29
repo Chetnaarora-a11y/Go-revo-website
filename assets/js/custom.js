@@ -299,8 +299,11 @@ window.onload = calcScrollValue;
       slidesPerView: 1,
       loop: true,
       speed:1000,
-      freeMode: true,
+      freeMode: false,
       effect: "fade",
+      fadeEffect: {
+        crossFade: true
+      },
       autoplay: {
         delay: 3000,
       },
@@ -395,8 +398,11 @@ window.onload = calcScrollValue;
       slidesPerView: 1,
       loop: true,
       speed:1000,
-      freeMode: true,
+      freeMode: false,
       effect: "fade",
+      fadeEffect: {
+        crossFade: true
+      },
       autoplay: {
         delay: 3000,
       },
@@ -420,7 +426,7 @@ window.onload = calcScrollValue;
       slidesPerView: 1,
       loop: true,
       speed:1000,
-      freeMode: true,
+      freeMode: false,
       autoplay: {
         delay: 3000,
       },
@@ -494,3 +500,61 @@ function progress_bar() {
         },speed);
     });
 }
+
+// 2025 PREMIUM MODERN REDESIGN SCRIPTS
+jQuery(document).ready(function($) {
+    // 1. Sticky Glass Navbar scroll behavior with upscroll detector
+    var lastScrollTop = 0;
+    $(window).on('scroll', function() {
+        var st = $(window).scrollTop();
+        if (st > 50) {
+            $('.navbar-wrapper').addClass('navbar-scrolled');
+            $('.main-header').addClass('scrolled');
+            
+            if (st < lastScrollTop) {
+                // Upscroll: show utility row again
+                $('.navbar-wrapper').removeClass('utility-collapsed');
+            } else {
+                // Downscroll: collapse utility row
+                $('.navbar-wrapper').addClass('utility-collapsed');
+            }
+        } else {
+            $('.navbar-wrapper').removeClass('navbar-scrolled');
+            $('.main-header').removeClass('scrolled');
+            $('.navbar-wrapper').removeClass('utility-collapsed');
+        }
+        lastScrollTop = st;
+    });
+    // Trigger scroll check on load in case page is refreshed scrolled down
+    if ($(window).scrollTop() > 50) {
+        $('.navbar-wrapper').addClass('navbar-scrolled');
+        $('.main-header').addClass('scrolled');
+        $('.navbar-wrapper').addClass('utility-collapsed');
+    }
+
+    // 2. Mobile trigger open/close actions
+    $('.navbar-mobile-trigger').on('click', function(e) {
+        e.preventDefault();
+        $('#mobile-nav').addClass('active');
+        $('body').addClass('overflow-hidden');
+    });
+
+    $('#res-cross, .mobile-menu-overlay, .mobile-link').on('click', function(e) {
+        // If clicking overlay itself or cross button or a link inside
+        if ($(e.target).closest('.mobile-menu-content').length === 0 || $(e.target).hasClass('mobile-link') || $(e.target).attr('id') === 'res-cross' || $(e.target).closest('#res-cross').length > 0) {
+            $('#mobile-nav').removeClass('active');
+            $('body').removeClass('overflow-hidden');
+        }
+    });
+
+    // 3. Smooth scrolling for anchor links
+    $('a[href^="#"]').on('click', function(event) {
+        var target = $(this.getAttribute('href'));
+        if (target.length) {
+            event.preventDefault();
+            $('html, body').stop().animate({
+                scrollTop: target.offset().top - 90 // Account for navbar height
+            }, 800);
+        }
+    });
+});
