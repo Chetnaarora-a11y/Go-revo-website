@@ -12,3 +12,7 @@ This document describes the calculations and visual configurations used in the i
 - 1 kW: Rs. 30,000
 - 2 kW: Rs. 60,000
 - 3 kW or higher: Rs. 78,000 (maximum subsidy capped)
+
+## Layout Styling
+- **Desktop**: Two-panel design system with inputs on left and outputs on right.
+- **Mobile**: Responsive full-screen drawer overlay sliding from bottom, featuring sticky CTA buttons.
