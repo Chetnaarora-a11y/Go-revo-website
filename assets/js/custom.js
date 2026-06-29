@@ -697,6 +697,126 @@ jQuery(document).ready(function($) {
         </div>
     `;
 
+    // 2b. HTML Markup for hero embedded calculator container (Results on top, Bill Slider on bottom)
+    const heroCalcContainerMarkup = `
+        <div class="solar-calc-container hero-calc-layout">
+          <!-- Top Panel: Results -->
+          <div class="solar-calc-panel right-panel hero-results-panel">
+            <div class="calc-loading-overlay calc-loading">
+              <div class="calc-spinner"></div>
+              <p style="font-weight: 600; color: var(--common-colour);">Calculating savings...</p>
+            </div>
+            
+            <h3 class="panel-title text-center text-lg-start">Your Solar Estimate</h3>
+            
+            <!-- Monthly Savings Main Box -->
+            <div class="savings-main-card">
+              <span class="savings-card-label">Estimated Monthly Savings</span>
+              <div class="savings-main-val res-monthly-savings">₹0</div>
+              <div class="bill-comparison-bar">
+                <div class="comparison-item">
+                  <span class="comp-label">Current Bill</span>
+                  <span class="comp-val res-old-bill">₹6,000</span>
+                </div>
+                <div class="comparison-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="comparison-item">
+                  <span class="comp-label">Bill After Solar</span>
+                  <span class="comp-val res-new-bill">₹600</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 5-Year Savings Banner -->
+            <div class="five-year-savings-banner">
+              <span>Projected 5-Year Savings:</span>
+              <strong class="res-five-year-savings">₹0</strong>
+            </div>
+            
+            <!-- Result Cards Grid -->
+            <div class="calc-results-grid">
+              <div class="calc-res-card">
+                <div class="res-card-icon"><i class="fa-solid fa-solar-panel"></i></div>
+                <div class="res-card-data">
+                  <span class="res-label">System Size</span>
+                  <span class="res-val res-system-size">0 kW</span>
+                </div>
+              </div>
+              
+              <div class="calc-res-card">
+                <div class="res-card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <div class="res-card-data">
+                  <span class="res-label">Govt Subsidy</span>
+                  <span class="res-val text-success res-subsidy">₹0</span>
+                </div>
+              </div>
+              
+              <div class="calc-res-card">
+                <div class="res-card-icon"><i class="fa-solid fa-credit-card"></i></div>
+                <div class="res-card-data">
+                  <span class="res-label">Estimated EMI</span>
+                  <span class="res-val res-emi">₹0/mo</span>
+                </div>
+              </div>
+              
+              <div class="calc-res-card">
+                <div class="res-card-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="res-card-data">
+                  <span class="res-label">Payback Period</span>
+                  <span class="res-val res-payback">0 Years</span>
+                </div>
+              </div>
+              
+              <div class="calc-res-card">
+                <div class="res-card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="res-card-data">
+                  <span class="res-label">Annual Savings</span>
+                  <span class="res-val res-annual-savings">₹0</span>
+                </div>
+              </div>
+              
+              <div class="calc-res-card">
+                <div class="res-card-icon"><i class="fa-solid fa-leaf"></i></div>
+                <div class="res-card-data">
+                  <span class="res-label">CO₂ Offset (25 yr)</span>
+                  <span class="res-val res-co2">0 Tons</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bottom Panel: Input -->
+          <div class="solar-calc-panel left-panel hero-input-panel">
+            <form class="solar-calc-form" novalidate>
+              <div class="calc-input-group m-0">
+                <div class="bill-label-row">
+                  <label>Monthly Electricity Bill</label>
+                  <div class="bill-input-wrapper">
+                    <span class="currency-prefix">₹</span>
+                    <input type="number" class="calc-bill-input" min="1000" max="25000" value="6000" required>
+                  </div>
+                </div>
+                
+                <div class="slider-container">
+                  <input type="range" class="calc-bill-slider" min="1000" max="25000" step="500" value="6000">
+                  <div class="slider-bounds">
+                    <span>₹1,000</span>
+                    <span>₹25,000</span>
+                  </div>
+                </div>
+                <div class="calc-invalid-feedback bill-error-feedback">Electricity bill must be between ₹1,000 and ₹25,000</div>
+              </div>
+            </form>
+          </div>
+          
+          <!-- Bottom fixed/sticky CTA wrapper -->
+          <div class="calc-cta-wrapper hero-cta-wrapper">
+            <button type="button" class="btn btn-primary-premium w-100 btn-hero-check-savings">
+              CHECK MY EXACT SAVINGS <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+    `;
+
     // 3. Sliding Drawer Wrapper Dynamic Injection
     const calcDrawerMarkup = `
     <div class="solar-calc-drawer-overlay" id="solarCalcDrawerOverlay">
@@ -713,7 +833,7 @@ jQuery(document).ready(function($) {
     // 4. Inject calculator inside hero section on landing page
     const $heroContainer = $('.hero-calculator-container');
     if ($heroContainer.length) {
-        $heroContainer.html(calcContainerMarkup);
+        $heroContainer.html(heroCalcContainerMarkup);
         triggerCalculation($heroContainer);
     }
 
@@ -906,6 +1026,26 @@ jQuery(document).ready(function($) {
 
     $(document).on('click', '#solarCalcDrawer', function(e) {
         e.stopPropagation(); // prevent closing overlay when clicking inside drawer
+    });
+
+    // Sync and open drawer when clicking "Check My Exact Savings" from the hero calculator
+    $(document).on('click', '.btn-hero-check-savings', function(e) {
+        e.preventDefault();
+        const heroBill = $(this).closest('.solar-calc-container').find('.calc-bill-input').val();
+        
+        // Open drawer
+        openCalculatorDrawer();
+        
+        // Sync bill amount to drawer inputs
+        const $drawerContainer = $('#solarCalcDrawer').find('.solar-calc-container');
+        $drawerContainer.find('.calc-bill-input').val(heroBill);
+        $drawerContainer.find('.calc-bill-slider').val(heroBill);
+        triggerCalculation($drawerContainer);
+        
+        // Focus name field in drawer for optimal UX
+        setTimeout(function() {
+            $drawerContainer.find('.calc-name').focus();
+        }, 500);
     });
 
     // 9. Input fields validation on type

@@ -6163,6 +6163,34 @@ section, .gap {
     position: relative !important;
 }
 
+/* Hero specific panel overrides */
+.hero-calculator-wrapper .hero-calc-layout {
+    flex-direction: column !important;
+}
+
+.hero-calculator-wrapper .hero-results-panel {
+    width: 100% !important;
+    padding: 35px 30px 20px 30px !important;
+    background: transparent !important;
+}
+
+.hero-calculator-wrapper .hero-input-panel {
+    width: 100% !important;
+    padding: 24px 30px 24px 30px !important;
+    background: rgba(0, 154, 78, 0.01) !important;
+    border-top: 1px solid rgba(0, 154, 78, 0.08) !important;
+    border-bottom: none !important;
+}
+
+.hero-calculator-wrapper .hero-cta-wrapper {
+    padding: 0 30px 30px 30px !important;
+    background: rgba(0, 154, 78, 0.01) !important;
+    position: relative !important;
+    box-shadow: none !important;
+    border-top: none !important;
+    z-index: 1 !important;
+}
+
 .panel-title {
     font-size: 28px !important;
     font-weight: 700 !important;
