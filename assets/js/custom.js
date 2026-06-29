@@ -1064,4 +1064,4 @@ jQuery(document).ready(function($) {
     }
 });
 
-});
+});\n// End of Solar Savings Calculator implementation scripts\n
