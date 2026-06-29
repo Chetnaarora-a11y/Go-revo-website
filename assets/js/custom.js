@@ -266,31 +266,37 @@ window.onscroll = calcScrollValue;
 window.onload = calcScrollValue;
 // end
 
-/*-------------------- 08. c-slider ----------------------------*/ 
-    if ($(".c-slider")[0]){
+/*-------------------- 08. c-slider ----------------------------*/
+    if ($(".c-slider")[0]) {
         $('.c-slider').slick({
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
           dots: false,
           draggable: false,
-          waitForAnimate: true,
-          lazyLoad: 'ondemand',
-          fade: false,
-          speed: 30000
+          swipe: false,
+          autoplay: false,
+          waitForAnimate: false,
+          fade: true,
+          speed: 400,
+          cssEase: 'ease-in-out',
+          infinite: false
         });
-    }
-    // C-Slider
 
+        // Show first slide immediately on init
+        $('.c-slider').slick('slickGoTo', 0, true);
+    }
+
+    // C-Slider: clicking an avatar shows only that person's review
     $('.next-slide').on('click', function() {
-      var img_src = "";
       $('.next-slide.nav-active').removeClass('nav-active');
       $(this).addClass('nav-active');
-      img_src = $(this).html();
-      $('.slider-main-img').html(img_src);
-      var slideno = $(this).data('slide');
-      $('.c-slider').slick('slickGoTo', slideno - 1, true);
+      var slideno = parseInt($(this).data('slide'), 10);
+      $('.c-slider').slick('slickGoTo', slideno - 1, false);
     });
+
+    // Activate first avatar by default on page load
+    $('.next-slide[data-slide="1"]').addClass('nav-active');
 
 
 /*-------------------- 09. hero-one-slider ----------------------------*/
@@ -547,8 +553,8 @@ jQuery(document).ready(function($) {
         }
     });
 
-    // 3. Smooth scrolling for anchor links
-    $('a[href^="#"]').on('click', function(event) {
+    // 3. Smooth scrolling for anchor links (exclude calculator & modal triggers)
+    $('a[href^="#"]').not('[href*="solar-calculator"]').on('click', function(event) {
         var target = $(this.getAttribute('href'));
         if (target.length) {
             event.preventDefault();
@@ -561,7 +567,6 @@ jQuery(document).ready(function($) {
 // ==========================================
 // 2025 INTERACTIVE SOLAR SAVINGS CALCULATOR
 // ==========================================
-jQuery(document).ready(function($) {
     // 1. Configurable Constants for calculations
     const SOLAR_CALC_CONFIG = {
         TARIFF: 7.5,                 // average Rs per kWh unit in India
@@ -1062,6 +1067,5 @@ jQuery(document).ready(function($) {
             populateAndScrollToLeadForm(cached.name, cached.phone, cached.pincode);
         }, 600);
     }
-});
 
-});\n// End of Solar Savings Calculator implementation scripts\n
+}); // End of jQuery document ready
