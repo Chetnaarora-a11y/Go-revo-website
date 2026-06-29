@@ -301,27 +301,7 @@ window.onload = calcScrollValue;
 
 /*-------------------- 09. hero-one-slider ----------------------------*/
     if (typeof Swiper !== 'undefined') {
-      var swiper = new Swiper(".hero-one-slider", {
-      slidesPerView: 1,
-      loop: true,
-      speed:1000,
-      freeMode: false,
-      effect: "fade",
-      fadeEffect: {
-        crossFade: true
-      },
-      autoplay: {
-        delay: 3000,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
+
 /*-------------------- 10. clients-slider ----------------------------*/
     var swiper = new Swiper(".clients-slider", {
       slidesPerView: 5,
