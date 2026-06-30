@@ -1342,25 +1342,38 @@ span#progress-value i {
 .services {
     border: 1px solid #999999;
     padding: 0 40px;
+    padding-top: 55px;
     margin-top: 45px;
     margin-bottom: 48px;
     position: relative;
+    overflow: visible;
 }
 .services > img {
-    margin-left: -41px;
-    margin-bottom: -50px;
+    margin-left: -40px;
+    margin-right: -40px;
+    margin-bottom: 0;
     position: relative;
-    z-index: 1;
+    z-index: 10;
+    width: calc(100% + 80px);
+    height: auto;
+    display: block;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
 }
 .services p {
     padding-top: 12px;
     padding-bottom: 22px;
     position: relative;
     font-size: 16px;
+    z-index: 10;
+}
+.services h3 {
+    position: relative;
+    z-index: 10;
 }
 .services > i {
     position: relative;
-    z-index: 11;
+    z-index: 20;
     font-size: 44px;
     margin-bottom: 23px;
     width: 100px;
@@ -1372,7 +1385,7 @@ span#progress-value i {
     border-radius: 50%;
     border: 5px solid #fff;
     outline: 3px solid #ffcc12;
-    margin-top: -45px;
+    margin-top: -55px;
     color: #fff;
 }
 .services:before {
@@ -1380,26 +1393,42 @@ span#progress-value i {
     position: absolute;
     width: 100%;
     height: 0%;
-    right: 0;
-    z-index: 0;
+    left: 0;
+    z-index: 1;
     bottom: 0;
-    background-image: url(../img/produce-background.jpg);
-    background-size: cover;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #009a4e 0%, #006b35 100%);
+    transition: height 0.4s ease;
 }
 .services:hover:before {
     height: 100%;
 }
-.services:hover a,.services:hover p {
+.services:hover a, .services:hover p {
     color: #fff;
+    position: relative;
+    z-index: 10;
+}
+.services:hover h3 {
+    color: #fff;
+    position: relative;
+    z-index: 10;
+}
+.services:hover > i {
+    z-index: 20;
+    position: relative;
 }
 .services a:hover {
     color: var(--theme-colour);
-} 
+}
 .services a i:hover {
     transform: rotate(45deg);
 }
 .services:hover a i {
     background-color: var(--theme-colour);
+}
+.services a {
+    position: relative;
+    z-index: 10;
 }
 /* 15. need-expert */
 .need-expert {
@@ -5122,52 +5151,80 @@ h2 {
 
 /* Services Cards Redesign */
 .services {
-    background: rgba(255, 255, 255, 0.6) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(0, 154, 78, 0.05) !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 154, 78, 0.12) !important;
     border-top: 4px solid var(--common-colour) !important;
-    border-radius: 24px !important;
-    padding: 40px 30px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
+    border-radius: 16px !important;
+    padding: 30px 30px 0 30px !important;
+    padding-top: 65px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     position: relative !important;
-    overflow: hidden !important;
+    overflow: visible !important;
 }
 
 .services:hover {
-    transform: translateY(-8px) !important;
-    box-shadow: 0 20px 40px rgba(0, 154, 78, 0.08) !important;
-    border-color: rgba(0, 154, 78, 0.15) !important;
-    border-top-width: 6px !important;
+    transform: translateY(-6px) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.10) !important;
 }
 
-.services i {
-    width: 60px !important;
-    height: 60px !important;
-    background: rgba(0, 154, 78, 0.08) !important;
-    border-radius: 50% !important;
+/* Light frosted overlay on hover — text stays dark and readable */
+.services:before {
+    content: "" !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: 0% !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    z-index: 1 !important;
+    border-radius: 16px !important;
+    background: rgba(240, 250, 244, 0.96) !important;
+    transition: height 0.4s ease !important;
+    pointer-events: none !important;
+}
+
+.services:hover:before {
+    height: 100% !important;
+}
+
+.services > i {
+    position: relative !important;
+    z-index: 20 !important;
+    font-size: 34px !important;
+    margin-bottom: 20px !important;
+    width: 90px !important;
+    height: 90px !important;
+    background-color: #009a4e !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    color: var(--common-colour) !important;
-    font-size: 30px !important;
-    margin-bottom: 24px !important;
+    border-radius: 50% !important;
+    border: 4px solid #fff !important;
+    outline: 3px solid #ffcc12 !important;
+    margin-top: -55px !important;
+    color: #fff !important;
     transition: all 0.3s ease !important;
 }
 
-.services:hover i {
-    background: var(--common-colour) !important;
-    color: #ffffff !important;
-    transform: scale(1.1) rotate(5deg) !important;
+.services:hover > i {
+    transform: scale(1.08) !important;
+    z-index: 20 !important;
+}
+
+.services h3 {
+    position: relative !important;
+    z-index: 10 !important;
 }
 
 .services h3 a {
     font-size: 22px !important;
     font-weight: 700 !important;
-    color: var(--dark-premium) !important;
+    color: #1a1a2e !important;
     text-decoration: none !important;
     display: block !important;
-    margin-bottom: 16px !important;
+    margin-bottom: 12px !important;
+    position: relative !important;
+    z-index: 10 !important;
 }
 
 .services h3 a:hover {
@@ -5175,10 +5232,17 @@ h2 {
 }
 
 .services p {
-    font-size: 16px !important;
+    font-size: 15px !important;
     line-height: 1.7 !important;
-    color: var(--text-premium) !important;
+    color: #555 !important;
     margin-bottom: 20px !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.services a {
+    position: relative !important;
+    z-index: 10 !important;
 }
 
 .services a i.flaticon-right-up {
@@ -5188,6 +5252,20 @@ h2 {
     margin: 0 !important;
     width: auto !important;
     height: auto !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+.services > img {
+    position: relative !important;
+    z-index: 10 !important;
+    margin-left: -30px !important;
+    margin-right: -30px !important;
+    width: calc(100% + 60px) !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 0 0 12px 12px !important;
+    overflow: hidden !important;
 }
 
 /* Quote Consultation Form Redesign */
@@ -6627,4 +6705,106 @@ section, .gap {
 }
 
 
-\n/* Style spacing refinement for result cards hover lift state */\n
+/* \nStyle spacing refinement for result cards hover lift state\n */
+
+/* ============================================================
+   PHONE-ONLY FIXES (max-width: 576px)
+   Fixes: trust badge wrapping, need-expert layout, count-style overflow
+   DOES NOT affect tablet/desktop
+   ============================================================ */
+@media (max-width: 576px) {
+
+    /* --- Fix 1: PM Surya Ghar / MNRE Approved badge text wrapping --- */
+    .hero-trust-logos {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 10px 12px !important;
+        font-size: 13px !important;
+    }
+    .trust-logo-item {
+        white-space: nowrap !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 5px !important;
+        padding: 5px 10px !important;
+        font-size: 13px !important;
+    }
+    .trust-by {
+        width: 100% !important;
+        display: block !important;
+        font-size: 13px !important;
+    }
+
+    /* --- Fix 2: Need-expert (Solar Lagwane section) phone layout --- */
+    .need-expert {
+        flex-direction: column !important;
+        padding: 30px 20px !important;
+        gap: 24px !important;
+        border-radius: 20px !important;
+    }
+    .need-expert > div {
+        width: 100% !important;
+    }
+    .need-expert h4 {
+        font-size: 24px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 16px !important;
+    }
+    .phone-number {
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        margin-bottom: 0 !important;
+    }
+    .phone-number i {
+        flex-shrink: 0 !important;
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 20px !important;
+    }
+    .phone-number span {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        text-transform: none !important;
+    }
+    .phone-number a {
+        font-size: 18px !important;
+        display: block !important;
+        margin-top: 6px !important;
+    }
+    .need-expert form {
+        width: 100% !important;
+    }
+
+    /* --- Fix 3: Installed Capacity / WTGs Installed cards on mobile --- */
+    .experience-img {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 16px !important;
+        padding-bottom: 16px !important;
+    }
+    .count-style {
+        position: relative !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        width: 100% !important;
+        max-width: 260px !important;
+        height: auto !important;
+        padding: 20px 24px !important;
+        margin: 0 auto !important;
+        border-radius: 16px !important;
+    }
+    .count-style.two {
+        bottom: auto !important;
+        right: auto !important;
+    }
+    .count-style:not(.two) {
+        top: auto !important;
+        left: auto !important;
+    }
+}
