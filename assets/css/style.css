@@ -6808,3 +6808,48 @@ section, .gap {
         left: auto !important;
     }
 }
+/* =========================================
+   GO REVO HERO - COMPACT ONE SCREEN
+   ========================================= */
+
+.hero-static-section {
+    padding: 25px 0 20px !important;
+    min-height: auto !important;
+}
+
+.hero-static-section .hero-row {
+    min-height: auto !important;
+}
+
+.hero-static-section .hero-text-content {
+    padding: 0 !important;
+}
+
+.hero-static-section .trust-badge-wrapper {
+    margin-bottom: 12px !important;
+}
+
+.hero-static-section .hero-title {
+    font-size: 58px !important;
+    line-height: 1.02 !important;
+    margin: 10px 0 15px !important;
+}
+
+.hero-static-section .hero-desc {
+    font-size: 17px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 15px !important;
+}
+
+.hero-static-section .hero-buttons {
+    margin-bottom: 12px !important;
+}
+
+.hero-static-section .hero-trust-logos {
+    margin-top: 5px !important;
+}
+
+.hero-static-section .hero-calculator-wrapper {
+    transform: scale(0.88);
+    transform-origin: center center;
+}
