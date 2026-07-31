@@ -6853,3 +6853,63 @@ section, .gap {
     transform: scale(0.88);
     transform-origin: center center;
 }
+/* =========================================
+   SIMPLE GO REVO HEADER
+   ========================================= */
+
+.simple-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 5%;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.simple-header-logo img {
+    width: 125px;
+    height: auto;
+    display: block;
+}
+
+.simple-header-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.simple-header-link {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.simple-header-link i {
+    color: #00a651;
+    margin-right: 6px;
+}
+
+.simple-language {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.simple-language a {
+    text-decoration: none;
+    color: #4b5563;
+}
+
+.simple-language a.active {
+    color: #00a651;
+}
+
+.simple-language span {
+    color: #999;
+}
