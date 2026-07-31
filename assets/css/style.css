@@ -6913,3 +6913,43 @@ section, .gap {
 .simple-language span {
     color: #999;
 }
+/* FINAL: FIT ENTIRE HERO + CALCULATOR IN ONE SCREEN */
+
+.hero-static-section {
+    height: calc(100vh - 185px) !important;
+    min-height: 0 !important;
+    padding: 5px 0 !important;
+    overflow: hidden !important;
+}
+
+.hero-static-section .hero-row {
+    height: 100% !important;
+    min-height: 0 !important;
+    align-items: center !important;
+}
+
+.hero-static-section .hero-calculator-wrapper {
+    transform: scale(0.68) !important;
+    transform-origin: top center !important;
+    margin-top: -15px !important;
+}
+
+.hero-static-section .hero-title {
+    font-size: 50px !important;
+    line-height: 1.0 !important;
+    margin: 6px 0 10px !important;
+}
+
+.hero-static-section .hero-desc {
+    font-size: 15px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 10px !important;
+}
+
+.hero-static-section .hero-buttons {
+    margin-bottom: 8px !important;
+}
+
+.hero-static-section .hero-trust-logos {
+    margin-top: 4px !important;
+}
