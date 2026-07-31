@@ -6809,275 +6809,104 @@ section, .gap {
     }
 }
 /* =========================================
-   GO REVO HERO — EXACT DESKTOP LAYOUT
+   HEADER — TAKE REAL SPACE, NO OVERLAP
    ========================================= */
 
-.hero-static-section {
-    padding: 32px 0 28px !important;
-    min-height: calc(100vh - 92px) !important;
-    height: calc(100vh - 92px) !important;
-    overflow: hidden !important;
-}
-
-.hero-static-section .hero-row {
-    min-height: calc(100vh - 150px) !important;
-    height: calc(100vh - 150px) !important;
-    display: flex !important;
-    align-items: center !important;
-}
-
-/* LEFT SIDE */
-.hero-static-section .hero-text-content {
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-}
-
-.hero-static-section .trust-badge-wrapper {
-    margin-bottom: 38px !important;
-}
-
-.hero-static-section .hero-title {
-    font-size: 64px !important;
-    line-height: 1.16 !important;
-    margin: 0 0 22px !important;
-    max-width: 680px !important;
-}
-
-.hero-static-section .hero-desc {
-    font-size: 21px !important;
-    line-height: 1.65 !important;
-    max-width: 620px !important;
-    margin-bottom: 28px !important;
-}
-
-.hero-static-section .hero-buttons {
-    margin-bottom: 25px !important;
-}
-
-.hero-static-section .hero-trust-logos {
-    margin-top: 0 !important;
-}
-
-
-/* RIGHT SIDE */
-.hero-static-section .hero-calculator-col {
-    height: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding-left: 25px !important;
-}
-
-.hero-static-section .hero-calculator-wrapper {
+header.main-header {
+    position: relative !important;   /* was absolute — was floating over hero */
+    top: auto !important;
     width: 100% !important;
-    max-width: 620px !important;
-    transform: none !important;
-    margin: 0 auto !important;
+    z-index: 1000 !important;
 }
-
-
-/* =========================================
-   LARGE DESKTOP
-   ========================================= */
-
-@media (min-width: 1400px) {
-
-    .hero-static-section {
-        padding-top: 30px !important;
-        padding-bottom: 25px !important;
-    }
-
-    .hero-static-section .hero-title {
-        font-size: 64px !important;
-    }
-
-    .hero-static-section .hero-calculator-wrapper {
-        max-width: 620px !important;
-    }
-}
-
-
-/* =========================================
-   LAPTOP
-   ========================================= */
-
-@media (min-width: 992px) and (max-width: 1399px) {
-
-    .hero-static-section {
-        min-height: calc(100vh - 85px) !important;
-        height: calc(100vh - 85px) !important;
-        padding: 20px 0 !important;
-    }
-
-    .hero-static-section .hero-row {
-        min-height: calc(100vh - 125px) !important;
-        height: calc(100vh - 125px) !important;
-    }
-
-    .hero-static-section .hero-title {
-        font-size: 52px !important;
-        line-height: 1.08 !important;
-    }
-
-    .hero-static-section .hero-desc {
-        font-size: 17px !important;
-        line-height: 1.5 !important;
-    }
-
-    .hero-static-section .hero-calculator-col {
-        padding-left: 10px !important;
-    }
-
-    .hero-static-section .hero-calculator-wrapper {
-        max-width: 570px !important;
-    }
-}
-
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 991px) {
-
-    .hero-static-section {
-        height: auto !important;
-        min-height: auto !important;
-        overflow: visible !important;
-        padding: 35px 0 !important;
-    }
-
-    .hero-static-section .hero-row {
-        height: auto !important;
-        min-height: auto !important;
-        display: block !important;
-    }
-
-    .hero-static-section .hero-text-content {
-        display: block !important;
-    }
-
-    .hero-static-section .hero-title {
-        font-size: 40px !important;
-        line-height: 1.1 !important;
-    }
-
-    .hero-static-section .hero-desc {
-        font-size: 17px !important;
-        line-height: 1.5 !important;
-    }
-
-    .hero-static-section .hero-calculator-col {
-        height: auto !important;
-        padding-left: 0 !important;
-        margin-top: 35px !important;
-    }
-
-    .hero-static-section .hero-calculator-wrapper {
-        width: 100% !important;
-        max-width: 100% !important;
-        transform: none !important;
-    }
-}
-/* =========================================
-   SIMPLE GO REVO HEADER
-   ========================================= */
 
 .simple-header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 5%;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 16px 40px !important;
+    background: #ffffff !important;   /* prevents hero bg bleeding through */
 }
 
 .simple-header-logo img {
-    width: 125px;
-    height: auto;
-    display: block;
+    width: 100px !important;
+    height: auto !important;
 }
 
 .simple-header-right {
-    display: flex;
-    align-items: center;
-    gap: 28px;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 20px !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
 }
 
-.simple-header-link {
-    text-decoration: none;
-    color: #4b5563;
-    font-size: 16px;
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-.simple-header-link i {
-    color: #00a651;
-    margin-right: 6px;
-}
-
-.simple-language {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-}
-
-.simple-language a {
-    text-decoration: none;
-    color: #4b5563;
-}
-
-.simple-language a.active {
-    color: #00a651;
-}
-
-.simple-language span {
-    color: #999;
-}
-/* FINAL: FIT ENTIRE HERO + CALCULATOR IN ONE SCREEN */
-
+/* Now that header takes real space, hero just needs to fill the rest */
 .hero-static-section {
-    height: calc(100vh - 185px) !important;
+    height: calc(100vh - 74px) !important;   /* matches header's real height now */
     min-height: 0 !important;
-    padding: 5px 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
     overflow: hidden !important;
 }
 
-.hero-static-section .hero-row {
-    height: 100% !important;
+@media (max-width: 991px) {
+    header.main-header {
+        position: relative !important;
+    }
+    .simple-header {
+        flex-wrap: wrap !important;
+        padding: 14px 20px !important;
+        gap: 10px !important;
+    }
+    .hero-static-section {
+        height: auto !important;
+        min-height: calc(100vh - 100px) !important;
+        overflow: visible !important;
+        padding: 30px 0 !important;
+    }
+}
+/* =========================================
+   FIX: CALCULATOR OVERFLOWING PAST VIEWPORT
+   ========================================= */
+
+/* The classic flexbox fix — without min-height:0, flex children
+   ignore parent height and grow to full content size */
+.hero-static-section .container,
+.hero-static-section .hero-row,
+.hero-static-section .hero-calculator-col,
+.hero-static-section .hero-calculator-wrapper {
     min-height: 0 !important;
-    align-items: center !important;
 }
 
 .hero-static-section .hero-calculator-wrapper {
-    transform: scale(0.68) !important;
-    transform-origin: top center !important;
-    margin-top: -15px !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow-y: auto !important;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
 }
 
-.hero-static-section .hero-title {
-    font-size: 50px !important;
-    line-height: 1.0 !important;
-    margin: 6px 0 10px !important;
+.hero-static-section .hero-calculator-wrapper::-webkit-scrollbar {
+    display: none !important;
 }
 
-.hero-static-section .hero-desc {
-    font-size: 15px !important;
-    line-height: 1.3 !important;
-    margin-bottom: 10px !important;
-}
-
-.hero-static-section .hero-buttons {
-    margin-bottom: 8px !important;
-}
-
-.hero-static-section .hero-trust-logos {
-    margin-top: 4px !important;
-}
+/* Tighten internal spacing further so it fits without needing to scroll at all */
+.hero-calculator-wrapper .panel-title { font-size: clamp(16px, 1.8vh, 22px) !important; margin-bottom: 2px !important; }
+.hero-calculator-wrapper .savings-card-label { font-size: clamp(10px, 1vh, 13px) !important; }
+.hero-calculator-wrapper .savings-main-val { font-size: clamp(20px, 2.6vh, 32px) !important; margin: 2px 0 !important; }
+.hero-calculator-wrapper .savings-main-card { padding: clamp(8px, 1.2vh, 16px) !important; margin-bottom: clamp(6px, 1vh, 12px) !important; }
+.hero-calculator-wrapper .bill-comparison-bar { padding: 6px 16px !important; margin-top: 8px !important; }
+.hero-calculator-wrapper .five-year-savings-banner { padding: clamp(6px, 1vh, 12px) 18px !important; margin-bottom: clamp(6px, 1vh, 12px) !important; font-size: 14px !important; }
+.hero-calculator-wrapper .five-year-savings-banner strong { font-size: clamp(14px, 1.6vh, 18px) !important; }
+.hero-calculator-wrapper .calc-results-grid { gap: clamp(5px, 0.8vh, 10px) !important; margin-bottom: clamp(6px, 1vh, 12px) !important; }
+.hero-calculator-wrapper .calc-res-card { padding: clamp(6px, 1vh, 12px) !important; gap: 8px !important; }
+.hero-calculator-wrapper .res-card-icon { width: 32px !important; height: 32px !important; font-size: 14px !important; }
+.hero-calculator-wrapper .res-label { font-size: 10px !important; }
+.hero-calculator-wrapper .res-val { font-size: 13px !important; }
+.hero-calculator-wrapper .hero-results-panel { padding: clamp(12px, 2vh, 24px) clamp(14px, 2vw, 24px) clamp(6px, 1vh, 12px) !important; }
+.hero-calculator-wrapper .hero-input-panel { padding: clamp(8px, 1.2vh, 16px) clamp(14px, 2vw, 24px) !important; }
+.hero-calculator-wrapper .hero-cta-wrapper { padding: 0 clamp(14px, 2vw, 24px) clamp(10px, 1.5vh, 18px) !important; }
+.hero-calculator-wrapper .calc-input-group { margin-bottom: 8px !important; }
