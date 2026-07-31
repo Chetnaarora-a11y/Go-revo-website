@@ -1209,4 +1209,72 @@ jQuery(document).ready(function($) {
         }, 600);
     }
 
-}); // End of jQuery document ready
+});// ==========================================
+    // ZERO INVESTMENT EMI CALCULATOR (NEW SECTION)
+    // ==========================================
+    const emiData = {
+        3: { saving: 4650, emi: { 60: 3100, 24: 6800, 12: 12600, 6: 24200 } },
+        4: { saving: 6200, emi: { 60: 4150, 24: 9100, 12: 16800, 6: 32300 } },
+        5: { saving: 7750, emi: { 60: 5200, 24: 11400, 12: 21000, 6: 40400 } }
+    };
+
+    let selectedSize = 3;
+    let selectedTenure = 60;
+
+    function updateEmiResults() {
+        const data = emiData[selectedSize];
+        $('.emi-saving-value').text('₹' + data.saving.toLocaleString('en-IN'));
+        $('.emi-emi-value').text('₹' + data.emi[selectedTenure].toLocaleString('en-IN'));
+        $('.emi-tenure-sub').text('for ' + selectedTenure + ' months');
+    }
+
+    $(document).on('click', '#systemSizeOptions .emi-option', function() {
+        $('#systemSizeOptions .emi-option').removeClass('active');
+        $(this).addClass('active');
+        selectedSize = parseInt($(this).data('size'));
+        updateEmiResults();
+    });
+
+    $(document).on('click', '#tenureOptions .emi-option-sm', function() {
+        $('#tenureOptions .emi-option-sm').removeClass('active');
+        $(this).addClass('active');
+        selectedTenure = parseInt($(this).data('tenure'));
+        updateEmiResults();
+    });
+
+    // Initialize on load
+    if ($('#systemSizeOptions').length) {
+        updateEmiResults();
+    }
+// ==========================================
+    // ZERO INVESTMENT EMI CALCULATOR (NEW SECTION)
+    // ==========================================
+    const emiData = { ... };
+    // ... (EMI code jo pehle daala tha)
+    if ($('#systemSizeOptions').length) {
+        updateEmiResults();
+    }
+
+    // ==========================================
+    // GO REVO ADVANTAGE — SCROLL REVEAL
+    // ==========================================
+    if ($('.advantage-section').length) {
+        const advantageObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry, i) {
+                if (entry.isIntersecting) {
+                    $(entry.target).addClass('in-view').css('transition-delay', (i * 0.08) + 's');
+                    advantageObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.advantage-cell').forEach(function(cell) {
+            advantageObserver.observe(cell);
+        });
+    }
+
+;   ← yeh original closing bracket, jaisa hai waisa hi rehne do
+// End of jQuery document ready
+; // End of jQuery document ready
+
+ // End of jQuery document ready
