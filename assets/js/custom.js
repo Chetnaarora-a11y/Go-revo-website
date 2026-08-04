@@ -1246,15 +1246,6 @@ jQuery(document).ready(function($) {
     if ($('#systemSizeOptions').length) {
         updateEmiResults();
     }
-// ==========================================
-    // ZERO INVESTMENT EMI CALCULATOR (NEW SECTION)
-    // ==========================================
-    const emiData = { ... };
-    // ... (EMI code jo pehle daala tha)
-    if ($('#systemSizeOptions').length) {
-        updateEmiResults();
-    }
-
     // ==========================================
     // GO REVO ADVANTAGE — SCROLL REVEAL
     // ==========================================
@@ -1273,7 +1264,7 @@ jQuery(document).ready(function($) {
         });
     }
 
-;   ← yeh original closing bracket, jaisa hai waisa hi rehne do
+;  
 // End of jQuery document ready
 ; // End of jQuery document ready
 
