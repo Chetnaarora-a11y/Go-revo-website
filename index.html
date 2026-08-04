@@ -97,10 +97,11 @@ a { text-decoration:none; color:inherit; }
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(245,166,35,0.15);
-  padding: 0 48px;
+  padding: env(safe-area-inset-top, 0px) 48px 0;
   display: flex; align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: calc(64px + env(safe-area-inset-top, 0px));
+  box-sizing: border-box;
 }
 .nav-logo {
   font-size: 26px; font-weight: 900;
@@ -160,7 +161,7 @@ section { width: 100%; overflow: hidden; }
   height: 100vh;
   height: 100svh;
   min-height: 560px;
-  padding-top: 64px;
+  padding-top: calc(64px + env(safe-area-inset-top, 0px));
   display: flex; flex-direction: column;
   position: relative;
   background: var(--black);
@@ -216,7 +217,7 @@ section { width: 100%; overflow: hidden; }
 }
 .hero-badge .sep { color: rgba(245,166,35,0.45); }
 .hero-headline {
-  font-size: clamp(24px, 4vw, 46px);
+  font-size: clamp(20px, 3.4vw, 40px);
   font-weight: 900; line-height: 1.18;
   letter-spacing: -0.02em;
   margin-bottom: 12px;
@@ -234,19 +235,13 @@ section { width: 100%; overflow: hidden; }
   margin-bottom: 18px; max-width: 640px;
 }
 .hero-sub strong { color: var(--white); }
-.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-
-.hero-trust {
-  display: flex; gap: 22px; flex-wrap: wrap;
-  margin-top: 18px; padding-top: 16px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.hero-cta .btn {
+  border-radius: 100px;
+  padding: 13px 22px;
+  font-size: 14px;
 }
-.trust-item {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 12px; color: var(--smoke);
-}
-.trust-icon { font-size: 16px; }
-.trust-text strong { color: var(--white); font-weight: 700; }
+.hero-cta .btn-lg { font-size: 14px; padding: 13px 22px; }
 
 /* ── 2. PAIN SECTION ─────────────────────── */
 .pain {
@@ -399,6 +394,12 @@ section { width: 100%; overflow: hidden; }
   8% { opacity: 1; }
   92% { opacity: 1; }
   100% { left: 100%; opacity: 0; }
+}
+@keyframes spark-flow-v {
+  0% { top: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
 }
 .step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 20px; position: relative; z-index: 1; }
 .step-num {
@@ -1041,21 +1042,48 @@ footer {
 
 /* ── RESPONSIVE ──────────────────────────── */
 @media(max-width:768px){
-  .navbar { padding: 0 20px; }
+  .navbar { padding: env(safe-area-inset-top, 0px) 20px 0; }
+  .nav-logo { font-size: 18px; }
+  .nav-logo-sub { font-size: 6px; }
+  .nav-cta { gap: 8px; }
+  .nav-cta .btn { padding: 8px 12px !important; font-size: 11px !important; }
   .nav-badges { display:none; }
+  .hero-image-zone { min-height: 220px; }
   .hero-content { padding: 14px 20px 20px; }
   .hero-badge { font-size: 10.5px; padding: 6px 12px; }
-  .hero-trust { gap: 14px 18px; margin-top: 14px; padding-top: 12px; }
-  .trust-text br { display: none; }
-  .trust-text { display: inline; }
+  .hero-headline { font-size: clamp(19px, 5.6vw, 26px); }
+  .hero-cta { flex-wrap: nowrap; gap: 8px; }
+  .hero-cta .btn,
+  .hero-cta .btn-lg,
+  .hero-cta .btn-call {
+    flex: 1 1 0;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.25;
+    gap: 6px;
+    font-size: 12px;
+    padding: 10px 10px;
+    border-radius: 100px;
+  }
   .pain { padding: 64px 24px; }
   .pain-inner { grid-template-columns: 1fr; gap: 40px; }
   .solution { padding: 64px 24px; }
   .solution-grid { grid-template-columns: 1fr; }
   .howto { padding: 64px 24px; }
-  .steps { grid-template-columns: 1fr; gap: 32px; }
+  .steps { grid-template-columns: 1fr; gap: 40px; }
   .steps::before { display:none; }
-  .step-flow { display:none; }
+  .step-flow {
+    display: block;
+    left: 50%; right: auto;
+    width: 2px; height: auto;
+    background: rgba(245,166,35,0.28);
+    transform: translateX(-50%);
+  }
+  .step-flow .spark {
+    top: 0; left: -3px;
+    animation-name: spark-flow-v;
+  }
   .savings { padding: 64px 24px; }
   .calc-card { padding: 22px 18px 20px; }
   .savings-ring-wrap { width: 160px; height: 160px; }
@@ -1063,7 +1091,8 @@ footer {
   .planet { padding: 64px 24px; }
   .planet-stats { grid-template-columns: 1fr; }
   .why { padding: 64px 24px; }
-  .why-grid { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr; gap: 12px; }
+  .why-item { padding: 18px 16px; }
   .social { padding: 64px 24px; }
   .testimonials { grid-template-columns: 1fr; }
   .trust { padding: 64px 24px; }
@@ -1081,7 +1110,6 @@ footer {
 
 /* Short viewport heights (small phones, landscape) — keep hero to one screen */
 @media (max-height: 680px) {
-  .hero-trust { display: none; }
   .hero-content { padding-top: 10px; padding-bottom: 14px; }
   .hero-sub { margin-bottom: 12px; }
 }
@@ -1240,7 +1268,6 @@ footer {
   </div>
 
   <div class="hero-content">
-    <div class="eyebrow">REVO Solar — Residential Rooftop Solar</div>
     <div class="hero-badge shine hi">₹1,08,000 Tak Government Subsidy <span class="sep">+</span> Zero Upfront Cost</div>
     <h1 class="hero-headline hi">
       <span class="word" style="animation-delay:.12s">Apne</span>
@@ -1269,25 +1296,6 @@ footer {
       <a href="tel:+919876543210" class="btn btn-call">
         📞 <span class="hi">Abhi Call Karo</span>
       </a>
-    </div>
-
-    <div class="hero-trust">
-      <div class="trust-item">
-        <span class="trust-icon">☀️</span>
-        <span class="trust-text"><strong>30 Saal</strong><br>Panel Warranty</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-icon">⚡</span>
-        <span class="trust-text"><strong>4 Din</strong><br>Mein Installation</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-icon">🏛️</span>
-        <span class="trust-text hi"><strong>₹1,08,000</strong><br>Sarkari Subsidy (UP)</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-icon">📱</span>
-        <span class="trust-text"><strong>Real-time</strong><br>App Monitoring</span>
-      </div>
     </div>
   </div>
 </section>
@@ -1969,6 +1977,36 @@ footer {
   });
 })();
 
+// ── VERTICAL STEP FLOW (mobile "Kitna Simple" gamified line) ──
+(function () {
+  var stepsEl = document.querySelector('.steps');
+  var flow = document.querySelector('.step-flow');
+  if (!stepsEl || !flow) return;
+  var mq = window.matchMedia('(max-width: 768px)');
+
+  function positionFlow() {
+    if (!mq.matches) {
+      flow.style.top = '';
+      flow.style.height = '';
+      return;
+    }
+    var nums = stepsEl.querySelectorAll('.step-num');
+    if (nums.length < 2) return;
+    var stepsRect = stepsEl.getBoundingClientRect();
+    var firstRect = nums[0].getBoundingClientRect();
+    var lastRect = nums[nums.length - 1].getBoundingClientRect();
+    var top = (firstRect.top + firstRect.height / 2) - stepsRect.top;
+    var bottom = (lastRect.top + lastRect.height / 2) - stepsRect.top;
+    flow.style.top = top + 'px';
+    flow.style.height = Math.max(0, bottom - top) + 'px';
+  }
+
+  window.addEventListener('load', positionFlow);
+  window.addEventListener('resize', positionFlow);
+  positionFlow();
+  setTimeout(positionFlow, 350);
+})();
+
 // ── SCROLL REVEAL ───────────────────────────────
 (function () {
   var targets = document.querySelectorAll(
@@ -1996,4 +2034,3 @@ footer {
 
 </body>
 </html>
-
