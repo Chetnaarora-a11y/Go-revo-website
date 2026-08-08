@@ -261,6 +261,65 @@ section { width: 100%; overflow: hidden; }
 }
 .hero-cta .btn-lg { font-size: 14px; padding: 13px 22px; }
 
+/* ── HERO ACTION BAR (3-box CTA + trust row) ── */
+.hero-actions { margin-top: 4px; }
+.hero-cta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(245,166,35,0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 820px;
+  background: rgba(255,255,255,0.02);
+}
+.hero-cta-box {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 18px;
+  cursor: pointer; border: none;
+  font-family: inherit; text-align: left;
+  transition: filter 0.2s ease;
+}
+.hero-cta-box:not(:first-child) { border-left: 1px solid rgba(245,166,35,0.25); }
+.hero-cta-box:hover { filter: brightness(1.08); }
+.hero-cta-box .cta-icon { font-size: 21px; flex-shrink: 0; }
+.hero-cta-box .cta-text { display: flex; flex-direction: column; }
+.hero-cta-box .cta-title {
+  font-size: 13.5px; font-weight: 800; line-height: 1.25;
+}
+.hero-cta-box .cta-sub {
+  font-size: 11px; margin-top: 2px; opacity: 0.85; line-height: 1.3;
+}
+.cta-gold { background: var(--gold); color: var(--black); }
+.cta-gold .cta-sub { color: rgba(10,10,10,0.75); }
+.cta-wa { background: var(--wa); color: var(--white); }
+.cta-dark { background: rgba(255,255,255,0.05); color: var(--white); }
+.cta-dark .cta-sub { color: var(--smoke); }
+
+.hero-trust-row {
+  display: flex; align-items: center; gap: 16px;
+  margin-top: 22px; flex-wrap: wrap;
+}
+.trust-item { display: flex; align-items: center; gap: 9px; }
+.trust-item .ti-icon {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid rgba(245,166,35,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: var(--gold); flex-shrink: 0;
+}
+.trust-item .ti-text {
+  font-size: 11.5px; color: var(--smoke); line-height: 1.35;
+}
+.trust-item .ti-text strong { display: block; color: var(--white); font-size: 12.5px; font-weight: 700; }
+.trust-div { width: 1px; height: 26px; background: rgba(255,255,255,0.12); }
+
+@media (max-width: 640px) {
+  .hero-cta-grid { grid-template-columns: 1fr; max-width: 100%; }
+  .hero-cta-box:not(:first-child) { border-left: none; border-top: 1px solid rgba(245,166,35,0.25); }
+  .hero-trust-row { gap: 10px; }
+  .trust-div { display: none; }
+  .trust-item { width: calc(50% - 5px); }
+}
+
 /* ── 2. PAIN SECTION ─────────────────────── */
 .pain {
   background: linear-gradient(180deg, var(--black) 0%, #0d0d0d 100%);
@@ -1156,7 +1215,7 @@ footer {
 <body>
 
 <!-- ── FLOATING WHATSAPP ── -->
-<a href="https://wa.me/919876543210?text=Namaste%2C%20mujhe%20free%20solar%20estimate%20chahiye" class="float-wa" title="WhatsApp pe Free Estimate Lo">💬</a>
+<a href="https://wa.me/919818487575?text=Namaste%2C%20mujhe%20free%20solar%20estimate%20chahiye" class="float-wa" title="WhatsApp pe Free Estimate Lo">💬</a>
 <div class="float-wa-label hi">WhatsApp karo →</div>
 
 <!-- ── AMBIENT SIDE ANIMATION: sun → panel ── -->
@@ -1205,8 +1264,8 @@ footer {
     <span class="nav-badge shine">DPIIT Certified</span>
   </div>
   <div class="nav-cta">
-    <a href="tel:+919876543210" class="btn btn-call" style="padding:10px 20px; font-size:13px;">📞 Call Karo</a>
-    <a href="https://wa.me/919876543210?text=Free%20estimate%20chahiye" class="btn btn-wa" style="padding:10px 20px; font-size:13px;">
+    <a href="tel:+919818487575" class="btn btn-call" style="padding:10px 20px; font-size:13px;">📞 Call Karo</a>
+    <a href="https://wa.me/919818487575?text=Free%20estimate%20chahiye" class="btn btn-wa" style="padding:10px 20px; font-size:13px;">
       💬 <span class="hi">Free Estimate</span>
     </a>
   </div>
@@ -1279,16 +1338,53 @@ footer {
       <span class="word" style="animation-delay:.66s">Kam</span>
       <span class="word" style="animation-delay:.70s">Kijiye</span>
     </h1>
-    <p class="hero-sub hi">
-      <strong>Zero down payment.</strong> Easy EMI. Apne rooftop par solar lagao aur <strong>har mahine hazaaron rupaye bachaao.</strong>
-    </p>
-    <div class="hero-cta">
-      <a href="https://wa.me/919876543210?text=Namaste%2C%20mujhe%20free%20solar%20estimate%20chahiye" class="btn btn-wa btn-lg">
-        💬 <span class="hi">WhatsApp pe Free Estimate Lo</span>
-      </a>
-      <a href="tel:+919876543210" class="btn btn-call">
-        📞 <span class="hi">Abhi Call Karo</span>
-      </a>
+
+    <div class="hero-actions">
+      <div class="hero-cta-grid">
+        <button type="button" class="hero-cta-box cta-gold" id="heroEligBtn">
+          <span class="cta-icon">☀️</span>
+          <span class="cta-text">
+            <span class="cta-title hi">Eligibility Check</span>
+            <span class="cta-sub hi">30 Sec Mein Check Karein</span>
+          </span>
+        </button>
+        <a href="https://wa.me/919818487575?text=Namaste%2C%20mujhe%20free%20solar%20estimate%20chahiye" class="hero-cta-box cta-wa">
+          <span class="cta-icon">💬</span>
+          <span class="cta-text">
+            <span class="cta-title hi">WhatsApp Karo</span>
+            <span class="cta-sub hi">Instant Support Paayein</span>
+          </span>
+        </a>
+        <a href="#savings" class="hero-cta-box cta-dark">
+          <span class="cta-icon">🧮</span>
+          <span class="cta-text">
+            <span class="cta-title hi">Free Estimate</span>
+            <span class="cta-sub hi">Apni Savings Jaanein</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="hero-trust-row">
+        <div class="trust-item">
+          <span class="ti-icon">🛡️</span>
+          <span class="ti-text hi"><strong>30 Saal Ki</strong>Performance Warranty</span>
+        </div>
+        <div class="trust-div"></div>
+        <div class="trust-item">
+          <span class="ti-icon">🔧</span>
+          <span class="ti-text hi"><strong>3 Din Mein</strong>Installation</span>
+        </div>
+        <div class="trust-div"></div>
+        <div class="trust-item">
+          <span class="ti-icon">✅</span>
+          <span class="ti-text hi"><strong>MNRE Subsidy</strong>Ka Pura Fayda</span>
+        </div>
+        <div class="trust-div"></div>
+        <div class="trust-item">
+          <span class="ti-icon">🛡️</span>
+          <span class="ti-text hi"><strong>100% Safe &amp;</strong>Certified System</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1433,7 +1529,7 @@ footer {
     </div>
 
     <div class="howto-cta">
-      <a href="https://wa.me/919876543210?text=Free%20survey%20book%20karna%20hai" class="btn btn-wa btn-lg">
+      <a href="https://wa.me/919818487575?text=Free%20survey%20book%20karna%20hai" class="btn btn-wa btn-lg">
         💬 <span class="hi">Abhi WhatsApp Karo – Free Survey Book Karo</span>
       </a>
     </div>
@@ -1444,7 +1540,7 @@ footer {
 <!-- ═══════════════════════════════
      5. SAVINGS
      ═══════════════════════════════ -->
-<section class="savings">
+<section class="savings" id="savings">
   <div class="savings-inner">
     <div class="eyebrow">Apna Estimate Nikalo</div>
     <h2 class="section-title hi">Har mahine <span style="color:var(--gold);">kitna bachega?</span></h2>
@@ -1487,7 +1583,7 @@ footer {
         </div>
       </div>
 
-      <a href="https://wa.me/919876543210?text=Namaste%2C%20mera%20monthly%20bill%20hai%20aur%20mujhe%20free%20solar%20estimate%20chahiye" class="btn btn-wa" id="calcCta">
+      <a href="https://wa.me/919818487575?text=Namaste%2C%20mera%20monthly%20bill%20hai%20aur%20mujhe%20free%20solar%20estimate%20chahiye" class="btn btn-wa" id="calcCta">
         💬 <span class="hi">Yeh Estimate WhatsApp Pe Lo</span>
       </a>
     </div>
@@ -1521,7 +1617,7 @@ Kharcha bhi nahi - Pollution bhi nahi. Apne bacchon ke liye thoda better future 
       </div>
     </div>
 
-    <a href="https://wa.me/919876543210?text=Solar%20lagana%20chahta%20hoon" class="btn btn-wa btn-lg" style="margin: 0 auto; display:inline-flex;">
+    <a href="https://wa.me/919818487575?text=Solar%20lagana%20chahta%20hoon" class="btn btn-wa btn-lg" style="margin: 0 auto; display:inline-flex;">
       💬 <span class="hi">Free Estimate Lo — Abhi</span>
     </a>
   </div>
@@ -1702,10 +1798,10 @@ Kharcha bhi nahi - Pollution bhi nahi. Apne bacchon ke liye thoda better future 
   <h2 class="section-title hi">Bijli ke bill se tang?<br><span style="color:var(--gold);">Aaj hi free estimate lo.</span></h2>
   <p class="section-sub hi">Koi jhanjhat nahi. Sirf clear calculation aur seedha jawab.<br>Free hai. Fast hai. Aur aapke ghar pe aake hoga.</p>
   <div class="final-cta-btns">
-    <a href="https://wa.me/919876543210?text=Namaste%2C%20mujhe%20free%20solar%20estimate%20chahiye" class="btn btn-wa btn-lg">
+    <a href="https://wa.me/919818487575?text=Namaste%2C%20mujhe%20free%20solar%20estimate%20chahiye" class="btn btn-wa btn-lg">
       💬 <span class="hi">WhatsApp Pe Free Estimate Lo</span>
     </a>
-    <a href="tel:+919876543210" class="btn btn-call btn-lg">
+    <a href="tel:+919818487575" class="btn btn-call btn-lg">
       📞 <span class="hi">Seedha Call Karo</span>
     </a>
   </div>
@@ -1721,7 +1817,7 @@ Kharcha bhi nahi - Pollution bhi nahi. Apne bacchon ke liye thoda better future 
       <div class="tagline">Clean Living Revolution</div>
     </div>
     <div class="footer-info">
-      <strong>gorevo.in</strong> &nbsp;·&nbsp; support@gorevo.in &nbsp;·&nbsp; +91 98765 43210<br>
+      <strong>gorevo.in</strong> &nbsp;·&nbsp; support@gorevo.in &nbsp;·&nbsp; +91 98184 87575<br>
       C-25, Sector 8, Noida – 201301<br>
       GST: 09AAPCP0491C1ZB<br>
       <span>REVO™ is a trademark of PrimeTower Infrastructure Pvt. Ltd.</span>
@@ -1731,8 +1827,8 @@ Kharcha bhi nahi - Pollution bhi nahi. Apne bacchon ke liye thoda better future 
 
 <!-- ── STICKY MOBILE CTA BAR ── -->
 <div class="sticky-mobile-bar">
-  <a href="tel:+919876543210" class="btn btn-call">📞 <span class="hi">Call</span></a>
-  <a href="https://wa.me/919876543210?text=Namaste%2C%20mujhe%20free%20solar%20estimate%20chahiye" class="btn btn-wa">💬 <span class="hi">Free Estimate</span></a>
+  <a href="tel:+919818487575" class="btn btn-call">📞 <span class="hi">Call</span></a>
+  <a href="https://wa.me/919818487575?text=Namaste%2C%20mujhe%20free%20solar%20estimate%20chahiye" class="btn btn-wa">💬 <span class="hi">Free Estimate</span></a>
 </div>
 
 <!-- ── SOLAR ELIGIBILITY POPUP ── -->
@@ -1876,7 +1972,7 @@ Kharcha bhi nahi - Pollution bhi nahi. Apne bacchon ke liye thoda better future 
     }
     if (cta) {
       var msg = 'Namaste, mera monthly bijli bill ' + formatINR(bill) + ' hai aur mujhe free solar estimate chahiye';
-      cta.href = 'https://wa.me/919876543210?text=' + encodeURIComponent(msg);
+      cta.href = 'https://wa.me/919818487575?text=' + encodeURIComponent(msg);
     }
   }
 
@@ -1916,6 +2012,7 @@ Kharcha bhi nahi - Pollution bhi nahi. Apne bacchon ke liye thoda better future 
   var overlay = document.getElementById('eligOverlay');
   var closeBtn = document.getElementById('eligClose');
   var form = document.getElementById('eligForm');
+  var heroEligBtn = document.getElementById('heroEligBtn');
   if (!trigger || !overlay || !form) return;
 
   var FIRST_DELAY_MS = 25000;   // first auto-popup after 25s
@@ -1934,6 +2031,7 @@ Kharcha bhi nahi - Pollution bhi nahi. Apne bacchon ke liye thoda better future 
   }
 
   trigger.addEventListener('click', openModal);
+  if (heroEligBtn) heroEligBtn.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
   overlay.addEventListener('click', function (e) {
     if (e.target === overlay) closeModal();
@@ -1967,7 +2065,7 @@ Kharcha bhi nahi - Pollution bhi nahi. Apne bacchon ke liye thoda better future 
 
     submitted = true;
     sessionStorage.setItem('revo_elig_submitted', '1');
-    window.open('https://wa.me/919876543210?text=' + encodeURIComponent(msg), '_blank');
+    window.open('https://wa.me/919818487575?text=' + encodeURIComponent(msg), '_blank');
     closeModal();
   });
 })();
